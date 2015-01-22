@@ -1,6 +1,6 @@
 ---
 
-![UChicago](./img/UChicago.svg)
+![UChicago](https://github.com/nvenkataraman1/RProgrammingWorkshop/blob/master/img/UChicago.svg)
 
 ---
 
