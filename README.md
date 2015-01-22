@@ -12,14 +12,19 @@
 
 Session 1 (1/29): Introduction
 
-+ Introduction to collaborative coding (git, github)
-+ Creating a github account, setting up repos, cloning repos to local machine
 + Installing R and customizing RStudio
 + Working with Console and Source files
 + Installing and Loading packages
+    + From CRAN
+    + From github
 + Managing an R Session: Working Directory, .RData, .Rhistory
 + Workflow best practices
 + Resources
++ Introduction to collaborative coding
+    + Github
+    + Creating a Github account
+    + Setting up repos
+    + Cloning repos to local machine
 + Assignment discussion
 
 Session 2 (2/5): Data Structures in R
@@ -73,6 +78,17 @@ Session 6 (3/5): Creating Dynamic Reports in R
 + Assignment discussion
 
 Session 7 (3/12): Review of individual sessions and assignments
+
+---
+
+Recommended books
+
+1. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
+2. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
+
+Advanced Reference book (optional)
+
+1. [Advanced R](http://adv-r.had.co.nz) - Hadley Wickham
 
 ---
 
