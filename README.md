@@ -81,7 +81,7 @@ Session 7 (3/12): Review of individual sessions and assignments
 
 ---
 
-Recommended books
+##### Recommended books
 
 1. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
 2. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
