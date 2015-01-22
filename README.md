@@ -86,9 +86,10 @@ Session 7 (3/12): Review of individual sessions and assignments
 1. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
 2. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
 
-Advanced Reference book (optional)
+Advanced Reference books (optional)
 
 1. [Advanced R](http://adv-r.had.co.nz) - Hadley Wickham
+2. [R Graphics Cookbook](http://bit.ly/RGraphicsCookbook) (for ggplot2) - Winston Chang
 
 ---
 
