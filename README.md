@@ -72,7 +72,7 @@ Session 6 (3/5): Creating Dynamic Reports in R
 
 + _rmarkdown_
 + _knitr_
-+ _xtable_
++ _kable_
 + Pandoc
 + LaTeX
 + Assignment discussion
