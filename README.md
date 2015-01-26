@@ -12,14 +12,26 @@
 
 Session 1 (1/29): Introduction
 
-+ Installing R and customizing RStudio
-+ Working with Console and Source files
++ Installing R
++ Customizing RStudio
++ RStudio IDE features
+    + Working on Console
+    + Source files
+    + Files
+    + Environment
+    + History
+    + Plots
+    + Packages
 + Installing and Loading packages
     + From CRAN
     + From github
 + Managing an R Session: Working Directory, .RData, .Rhistory
 + Workflow best practices
 + Resources
+    + Stackoverflow - http://stackoverflow.com/search?q=rstats
+    + /r/rstats and /r/RStudio
+    + R Bloggers
+    + Data Science Central
 + Introduction to collaborative coding
     + Github
     + Creating a Github account
@@ -49,7 +61,7 @@ Session 3 (2/12): Data Munging in R
     + Working with variables
     + Working with missing values
 + Subsetting
-+ SQL within R
++ _dplyr_
 + Assignment discussion
 
 Session 4 (2/19): Functions in R
@@ -81,10 +93,17 @@ Session 7 (3/12): Review of individual sessions and assignments
 
 ---
 
-##### Recommended books
+### Discussion board
 
-1. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
-2. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
+Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprogramming)
+
+---
+
+### Recommended books
+
+1. [R for Everyone](http://amzn.to/1CIUvcY) - Jared Lander
+2. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
+3. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
 
 Advanced Reference books (optional)
 
