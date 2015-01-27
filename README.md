@@ -29,14 +29,12 @@ Session 1 (1/29): Introduction
 + Workflow best practices
 + Resources
     + Stackoverflow - http://stackoverflow.com/search?q=rstats
-    + /r/rstats and /r/RStudio
+    + [/r/rstats](https://www.reddit.com/r/rstats) 
+        and [/r/RStudio]((https://www.reddit.com/r/rstats))
     + R Bloggers
     + Data Science Central
-+ Introduction to collaborative coding
-    + Github
-    + Creating a Github account
-    + Setting up repos
-    + Cloning repos to local machine
++ Thinking about Programming using Pseudocode
++ In-class Practice Problems
 + Assignment discussion
 
 Session 2 (2/5): Data Structures in R
@@ -50,7 +48,17 @@ Session 2 (2/5): Data Structures in R
 + Lists
 + Assignment discussion
 
-Session 3 (2/12): Data Munging in R
+Session 3 (2/12): Functions in R
+
++ Function components
++ Control Flow
++ Lexical scoping
++ Arguments
++ Return values
++ Special use cases
++ Assignment discussion
+
+Session 4 (2/19): Data Munging in R
 
 + Reading data into R
     + Delimited text files
@@ -62,16 +70,6 @@ Session 3 (2/12): Data Munging in R
     + Working with missing values
 + Subsetting
 + _dplyr_
-+ Assignment discussion
-
-Session 4 (2/19): Functions in R
-
-+ Function components
-+ Control Flow
-+ Lexical scoping
-+ Arguments
-+ Return values
-+ Special use cases
 + Assignment discussion
 
 Session 5 (2/26): Graphics in R
