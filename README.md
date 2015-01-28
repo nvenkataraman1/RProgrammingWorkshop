@@ -102,6 +102,7 @@ Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprog
 1. [R for Everyone](http://amzn.to/1CIUvcY) - Jared Lander
 2. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
 3. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
+4. [The R Inferno (PDF copy)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Patrick Burns
 
 Advanced Reference books (optional)
 
