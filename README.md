@@ -102,12 +102,12 @@ Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprog
 1. [R for Everyone](http://amzn.to/1CIUvcY) - Jared Lander
 2. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
 3. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
-4. [The R Inferno (PDF copy)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Patrick Burns
 
-Advanced Reference books (optional)
+Reference books (optional)
 
 1. [Advanced R](http://adv-r.had.co.nz) - Hadley Wickham
 2. [R Graphics Cookbook](http://bit.ly/RGraphicsCookbook) (for ggplot2) - Winston Chang
+3. [The R Inferno (PDF copy)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Patrick Burns
 
 ---
 
