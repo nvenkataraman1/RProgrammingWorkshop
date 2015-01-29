@@ -31,8 +31,7 @@ Session 1 (1/29): Introduction
     + Stackoverflow - http://stackoverflow.com/search?q=rstats
     + [/r/rstats](https://www.reddit.com/r/rstats) 
         and [/r/RStudio]((https://www.reddit.com/r/rstats))
-    + R Bloggers
-    + Data Science Central
+    + R Bloggers - http://www.r-bloggers.com/
 + Thinking about Programming using Pseudocode
 + In-class Practice Problems
 + Assignment discussion
