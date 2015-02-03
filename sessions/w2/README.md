@@ -59,6 +59,10 @@ Modes include:
     + double (floating-point)
 2. character (string)
 3. logical
+4. complex
+5. raw
+
+We will only talk about numeric, character and logical modes today.
 
 ### Numeric: double
 
@@ -358,11 +362,11 @@ for(i in seq(x)) {
 ```
 
 ```
-## [1] -0.3510787
-## [1] 0.8696588
-## [1] -1.212879
-## [1] 1.220906
-## [1] 0.6849927
+## [1] 2.317316
+## [1] -1.948754
+## [1] 0.6588251
+## [1] -0.07674014
+## [1] 0.9988679
 ```
 
 ```r

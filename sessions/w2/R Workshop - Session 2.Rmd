@@ -59,6 +59,10 @@ Modes include:
     + double (floating-point)
 2. character (string)
 3. logical
+4. complex
+5. raw
+
+We will only talk about numeric, character and logical modes today.
 
 ### Numeric: double
 
