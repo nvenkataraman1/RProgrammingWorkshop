@@ -82,16 +82,17 @@ img {
 <li>The Art of R Programming by Norman Matloff</li>
 </ol>
 <hr />
-<div id="housekeeping" class="section level2">
-<h2>Housekeeping</h2>
+<div id="housekeeping-before-we-begin" class="section level2">
+<h2>Housekeeping Before We Begin</h2>
+<p>In R,</p>
 <ol style="list-style-type: decimal">
-<li>No static typing
+<li>No static typing, means
 <ul>
-<li>No declarations necessary</li>
-<li>Variable type can change</li>
+<li>No upfront variable type declarations necessary</li>
+<li>Variable type can change without explicit recasting</li>
 </ul></li>
 <li>Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they cannot start with a number or an underscore</li>
-<li>In R, index values start from 1</li>
+<li>Index values start from 1 (starts from 0 in Java, C++ etc.) This means, there’s no 0-th element.</li>
 </ol>
 <hr />
 </div>
@@ -175,6 +176,66 @@ typeof(int_vec)</code></pre>
 <pre class="r"><code>is.double(int_vec)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 </div>
+<div id="character-vectors" class="section level3">
+<h3>Character vectors</h3>
+<pre class="r"><code>char_vec &lt;- c(&quot;Hello&quot;, &quot;World&quot;)
+
+char_vec</code></pre>
+<pre><code>## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<pre class="r"><code>typeof(char_vec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>is.character(char_vec)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>length(char_vec)</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="logical-vectors" class="section level3">
+<h3>Logical vectors</h3>
+<pre class="r"><code>log_vec &lt;- rep(c(TRUE, FALSE), each=20)
+log_vec</code></pre>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [12]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+## [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [34] FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>is.logical(log_vec)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>is.numeric(log_vec)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is.character(log_vec)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<div id="illustrating-usage-of-logical-vector-return-values" class="section level4">
+<h4>Illustrating Usage of Logical Vector return values</h4>
+<pre class="r"><code>num &lt;- c(1:50)
+
+num %% 2 == 0</code></pre>
+<pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+## [12]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [23] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+## [34]  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [45] FALSE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
+<pre class="r"><code>table(num %% 2 == 0)</code></pre>
+<pre><code>## 
+## FALSE  TRUE 
+##    25    25</code></pre>
+<pre class="r"><code>which(num %% 2 == 0)</code></pre>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46
+## [24] 48 50</code></pre>
+<pre class="r"><code>typeof(num %% 2 == 0)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>## Complete.cases and is.na()
+sample &lt;- cbind(col1=rep(c(1,NA,3)),col2=rep(c(NA,4,6)))
+
+typeof(sample)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>is.na(sample)</code></pre>
+<pre><code>##       col1  col2
+## [1,] FALSE  TRUE
+## [2,]  TRUE FALSE
+## [3,] FALSE FALSE</code></pre>
+<pre class="r"><code>complete.cases(sample)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
 <div id="type-coercion" class="section level3">
 <h3>Type coercion</h3>
 <pre class="r"><code>int_vec &lt;- c(int_vec, 6)
@@ -209,8 +270,8 @@ is.numeric(another_int_vec)</code></pre>
 <pre class="r"><code>num_vec[0]</code></pre>
 <pre><code>## numeric(0)</code></pre>
 </div>
-<div id="common-operations" class="section level3">
-<h3>Common Operations</h3>
+<div id="common-vector-operations" class="section level3">
+<h3>Common Vector Operations</h3>
 <div id="adding-and-removing-elements" class="section level4">
 <h4>Adding and Removing elements</h4>
 <pre class="r"><code>num_vec[4] &lt;- 7 ## You can only do this if you know the dimensions and if you know the last used index
@@ -243,7 +304,7 @@ vec_2 &lt;- seq(1, 20, by=2)
 
 length(vec_2)</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre class="r"><code>## Recycling
+<pre class="r"><code>## Recycling of smaller vectors when operating with larger vectors
 
 vec_2</code></pre>
 <pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
@@ -259,6 +320,8 @@ vec_3 + vec_1</code></pre>
 <pre><code>## Warning in vec_3 + vec_1: longer object length is not a multiple of
 ## shorter object length</code></pre>
 <pre><code>## [1]  2  6 10 11 15 19 20</code></pre>
+<pre class="r"><code>1:10 %% 2</code></pre>
+<pre><code>##  [1] 1 0 1 0 1 0 1 0 1 0</code></pre>
 <pre class="r"><code>## Seq in loop operations
 
 x &lt;- rnorm(5)
@@ -266,13 +329,11 @@ x &lt;- rnorm(5)
 for(i in seq(x)) {
     print(x[i])
 }</code></pre>
-<pre><code>## [1] 0.92861
-## [1] -0.4095804
-## [1] 0.2157834
-## [1] -0.1580017
-## [1] 1.499688</code></pre>
-<pre class="r"><code>1:10 %% 2</code></pre>
-<pre><code>##  [1] 1 0 1 0 1 0 1 0 1 0</code></pre>
+<pre><code>## [1] 1.213474
+## [1] 0.7752752
+## [1] 0.1815149
+## [1] -0.01354197
+## [1] -0.7861722</code></pre>
 </div>
 <div id="using-rep" class="section level4">
 <h4>Using rep</h4>
@@ -283,8 +344,13 @@ vec</code></pre>
 <pre><code>## [1]  5 12 13  5 12 13  5 12 13</code></pre>
 <pre class="r"><code>rep(c(5,12,13),each=2)</code></pre>
 <pre><code>## [1]  5  5 12 12 13 13</code></pre>
+<hr />
 </div>
 </div>
+</div>
+<div id="matrices-and-arrays" class="section level2">
+<h2>Matrices and Arrays</h2>
+<hr />
 </div>
 <div id="dates" class="section level2">
 <h2>Dates</h2>

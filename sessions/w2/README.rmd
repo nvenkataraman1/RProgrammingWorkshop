@@ -20,13 +20,15 @@ References for today's session:
 
 ---
 
-## Housekeeping
+## Housekeeping Before We Begin
 
-1. No static typing
-    + No declarations necessary
-    + Variable type can change
+In R,
+
+1. No static typing, means
+    + No upfront variable type declarations necessary
+    + Variable type can change without explicit recasting
 2. Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they cannot start with a number or an underscore
-3. In R, index values start from 1
+3. Index values start from 1 (starts from 0 in Java, C++ etc.) This means, there's no 0-th element.
 
 ---
 
@@ -95,6 +97,59 @@ is.double(int_vec)
 
 ```
 
+### Character vectors
+
+```{r}
+char_vec <- c("Hello", "World")
+
+char_vec
+
+typeof(char_vec)
+
+is.character(char_vec)
+
+length(char_vec)
+
+```
+
+### Logical vectors
+
+```{r}
+log_vec <- rep(c(TRUE, FALSE), each=20)
+log_vec
+
+is.logical(log_vec)
+
+is.numeric(log_vec)
+
+is.character(log_vec)
+```
+
+#### Illustrating Usage of Logical Vector return values
+
+```{r}
+num <- c(1:50)
+
+num %% 2 == 0
+
+table(num %% 2 == 0)
+
+which(num %% 2 == 0)
+
+typeof(num %% 2 == 0)
+
+## Complete.cases and is.na()
+sample <- cbind(col1=rep(c(1,NA,3)),col2=rep(c(NA,4,6)))
+
+typeof(sample)
+
+is.na(sample)
+
+complete.cases(sample)
+
+```
+
+
 ### Type coercion
 
 ```{r}
@@ -138,7 +193,7 @@ num_vec[0]
 
 ```
 
-### Common Operations
+### Common Vector Operations
 
 #### Adding and Removing elements
 
@@ -175,7 +230,7 @@ vec_2 <- seq(1, 20, by=2)
 
 length(vec_2)
 
-## Recycling
+## Recycling of smaller vectors when operating with larger vectors
 
 vec_2
 
@@ -187,6 +242,8 @@ vec_3 <- seq(1, 20, by=3)
 
 vec_3 + vec_1
 
+1:10 %% 2
+
 ## Seq in loop operations
 
 x <- rnorm(5)
@@ -194,8 +251,6 @@ x <- rnorm(5)
 for(i in seq(x)) {
     print(x[i])
 }
-
-1:10 %% 2
 
 ```
 
@@ -211,6 +266,12 @@ rep(c(5,12,13),each=2)
 
 ```
 
+---
+
+## Matrices and Arrays
+
+
+---
 
 ## Dates
 
