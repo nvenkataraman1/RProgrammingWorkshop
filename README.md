@@ -101,6 +101,7 @@ Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprog
 1. [R for Everyone](http://amzn.to/1CIUvcY) - Jared Lander
 2. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
 3. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
+4. [R Cookbook](http://amzn.to/1EDFsmI) - Paul Teetor
 
 Reference books (optional)
 
