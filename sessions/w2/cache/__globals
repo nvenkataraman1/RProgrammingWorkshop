@@ -1,9 +1,0 @@
-unnamed-chunk-1	==	c	is.double	is.numeric	mode	typeof
-unnamed-chunk-2	c	is.double	is.integer	is.numeric	typeof
-unnamed-chunk-3	c	is.double	is.integer	is.numeric
-unnamed-chunk-4	as.integer	is.double	is.integer	is.numeric
-unnamed-chunk-5	num_vec
-unnamed-chunk-6	[<-	c
-unnamed-chunk-7	for	length	print	rnorm	seq
-unnamed-chunk-8	c	rep
-unnamed-chunk-9	as.Date	seq
