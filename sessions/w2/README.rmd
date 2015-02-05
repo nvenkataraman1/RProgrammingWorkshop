@@ -251,7 +251,7 @@ vec_3 + vec_1
 
 x <- rnorm(5)
 
-for(i in seq(x)) {
+for(i in seq_along(x)) {
     print(x[i])
 }
 
