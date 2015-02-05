@@ -9,6 +9,9 @@ output: html_document
 
 1. Atomic Vectors
 2. Matrices and Arrays
+
+Next week:
+
 3. Data frames
 4. Factors
 5. Lists
@@ -507,5 +510,31 @@ mat2 <- cbind(mat2, matrix(100:102, ncol=1))
 mat2
 
 ```
+
+---
+
+## Arrays
+
+### Creating an Array
+
+```{r}
+
+first <- matrix(seq(700,1500, by=100), nrow=3)
+first
+
+second <- matrix(seq(250,650, by=50), nrow=3)
+second
+
+third <- matrix(seq(2000,2800, by=100), nrow=3)
+third
+
+a1 <- array(data=c(first, second, third), dim=c(3,3,3))
+a1
+
+dim(a1)
+
+```
+
+
 
 ---
