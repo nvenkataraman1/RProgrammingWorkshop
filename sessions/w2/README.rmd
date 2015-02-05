@@ -254,7 +254,7 @@ for(i in seq(x)) {
 
 ```
 
-#### Using rep
+#### Using rep()
 
 ```{r}
 vec <- rep(1, 5)
@@ -266,15 +266,229 @@ rep(c(5,12,13),each=2)
 
 ```
 
+#### Filtering: Conditional
+
+```{r}
+## Single condition
+
+num_vec <- runif(5000, min=1, max=5000)
+
+range(num_vec)
+
+hist(num_vec)
+
+#num_vec[num_vec >= 2500]
+
+length(num_vec[num_vec >= 2500])
+
+## Compound conditions
+
+comp_vec <- seq(1000)
+
+range(comp_vec)
+
+length(comp_vec[(comp_vec >= 250 & comp_vec < 500)])
+
+```
+
+#### Filtering: Using ```subset```
+
+```{r}
+x <- c(6,1:3,NA,12)
+
+x
+
+x[x > 5]
+
+subset(x, x > 5)
+
+```
+
+#### Naming vector positions
+
+```{r}
+x <- 1:3
+x
+
+names(x) <- c("one", "two", "three")
+
+x
+
+x["one"]
+
+x["two"]
+
+x["three"]
+```
+
 ---
 
 ## Matrices and Arrays
 
+1. A __Matrix__ is a special type of array which has 2 dimensions.
+2. A matrix is also a vector with two additional attributes: 
+    + the *__number of rows__*
+    + the *__number of columns__*
+3. Matrices and arrays are created with *__matrix()__* and *__array()__*, 
+4. You can check the dimensions using ```dim()```
 
----
-
-## Dates
+### Creating a matrix
 
 ```{r}
-seq(as.Date("2011-12-30"), as.Date("2012-01-04"), by="days")
+mat1 <- matrix(1:12)
+mat1
+
+mat1 <- matrix(1:12, nrow=3)
+mat1
+
+mat1 <- matrix(1:12, ncol=3)
+mat1
+
+mat1 <- matrix(1:12, ncol=3, byrow=TRUE)
+mat1
+
 ```
+
+### General Matrix Operations
+
+#### Linear Algebra Operations Using Matrices
+
+```{r}
+
+mat1 <- matrix(1:4,nrow=2)
+mat1
+
+mat2 <- matrix(5:8,nrow=2)
+mat2
+
+## Matrix Addition
+
+mat1 + mat2
+
+mat3 <- matrix(1:9, nrow=3)
+mat3
+
+## Illustration of length difference
+#mat1 + mat3
+
+## Matrix Multiplication
+
+mat1 %*% mat2 ## Note the %*% operator
+
+## Regular element by element multiplication
+
+mat1
+mat2
+
+mat1 * mat2
+
+## Illustration of dimension difference 
+
+## mat1 %*% mat3
+
+dim(mat1)
+dim(mat3)
+
+## Matrix element naming
+mat1
+names(mat1)
+
+names(mat1) <- c("a","b")
+
+names(mat1)
+
+mat1
+mat1["a"]
+```
+
+#### Matrix Indexing
+
+Matrix indexing takes the form:
+
+mat_variable[row, column]
+
+```{r}
+mat1 <- matrix(1:4,nrow=2)
+mat1
+
+mat1[1,] ## row
+
+mat1[,1] ## column
+
+mat1[1,2] ## unique element
+
+mat1[-1,] ## excluding row
+
+mat1[,-2] ## excluding column
+
+## Changing specific rows
+
+mat3 <- matrix(1:9, ncol=3)
+mat3
+
+mat3[c(1,3),] <- matrix(1:6, nrow=2, byrow=TRUE)
+mat3
+
+mat4 <- matrix(1:9, ncol=3)
+mat4
+
+mat4[,c(1,3)] <- matrix(10:15, nrow=2)
+mat4
+
+```
+
+#### Filtering Matrices
+
+```{r}
+mat5 <- matrix(c(1:6,rep(NA, 3),10:12), nrow=6)
+mat5
+
+complete.cases(mat5)
+mat5[complete.cases(mat5),]
+
+mat6 <- matrix(1:9, nrow=3, byrow=TRUE)
+mat6
+
+mat6[mat6[,2] > 4,]
+
+## Be Cognizant of return types
+
+mat7 <- matrix(seq(4),nrow=2)
+mat7
+attributes(mat7)
+
+mat8 <- mat7[,2]
+mat8
+attributes(mat8)
+
+mat9 <- mat7[,2,drop=FALSE]
+mat9
+attributes(mat9)
+
+```
+### Adding / Removing Matrix Rows and Columns
+
+Technically, matrices are of fixed length and dimensions, so we cannot add or delete rows or columns. However, matrices can be reassigned, and thus we can achieve the same effect as if we had directly done additions or deletions.
+
+This is done using ```rbind()``` (to append rows) and ```cbind()``` to append columns.
+
+```{r}
+mat1 <- matrix(1:20, nrow=5)
+mat1
+
+rbind(mat1, c(40:43))
+
+mat1 <- rbind(mat1, c(40:43))
+mat1
+
+mat2 <- matrix(1:9, nrow=3, byrow = TRUE)
+mat2
+
+cbind(mat2, matrix(100:102, ncol=1))
+
+mat2 <- cbind(mat2, matrix(100:102, ncol=1))
+mat2
+
+```
+
+---
