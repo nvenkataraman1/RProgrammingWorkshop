@@ -461,9 +461,26 @@ mat8 <- mat7[,2]
 mat8
 attributes(mat8)
 
+## Using drop
+
 mat9 <- mat7[,2,drop=FALSE]
 mat9
 attributes(mat9)
+
+
+## Using as.matrix
+
+mat10 <- matrix(seq(25), nrow=5)
+mat10
+dim(mat10)
+
+mat11 <- mat10[,c(2)]
+mat11
+dim(mat11)
+
+mat11 <- as.matrix(mat10[,c(2)])
+mat11
+dim(mat11)
 
 ```
 ### Adding / Removing Matrix Rows and Columns
