@@ -16,11 +16,8 @@ Datasets
 5. state.name
 6. state.region
 7. state.x77
-
-Optional:
-
-1. euro
-2. euro.cross
+8. euro
+9. euro.cross
 
 ### Q1. Describe these datasets
 
