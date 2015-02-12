@@ -31,11 +31,11 @@ Optional:
 
 ### Q2. Vector operations and filtering
 
-a. Population per square mile
+1. Population per square mile
     + Which states have populations greater than 50,000 per square mile?
         + Of these states, which ones have Illiteracy rates below 1%?
-b. Top 3 states having the highest and lowest HS Graduation rates?
-c. Which states have the Murder rates below 7% or Income over 4500?
+2. Top 3 states having the highest and lowest HS Graduation rates?
+3. Which states have the Murder rates below 7% or Income over 4500?
     + What is the Life Expectancy in these states?
     + Average Area of these states?
 
@@ -47,9 +47,9 @@ Use ```state.x77``` and ```state.region```
 
 Use ```euro``` and ```euro.cross``` datasets
 
-a. Convert 20 Euro to ESP
-b. Convert 20 DEM to Euro
-c. Convert 20 LUF to ITL
+1. Convert 20 Euro to ESP
+2. Convert 20 DEM to Euro
+3. Convert 20 LUF to ITL
 
 ---
 
@@ -57,11 +57,11 @@ c. Convert 20 LUF to ITL
 
 ### Q1. Creating and combining data frames
 
-a. Create a data frame of length 1000 using a gaussian distribution
+1. Create a data frame of length 1000 using a gaussian distribution
     + Generate 1000 values of these distributions: normal, uniform and binomial
     + Combine all these distribution variables into a single data frame
     + Set the column names to the names of each distribution
-b. How many snacks does Scooby get?
+2. How many snacks does Scooby get?
 
 
 ```{r echo=FALSE}
@@ -94,10 +94,10 @@ Datasets
 
 ### Q3. Logical operations
 
-a. How many flights depart from each Origin airport?
-b. List the information for flights originating from ```JFK```
+1. How many flights depart from each Origin airport?
+2. List the information for flights originating from ```JFK```
     + What is the average humidity for flights originating from ```JFK```
-c. How many ```planes``` have 2 or more engines?
+3. How many ```planes``` have 2 or more engines?
     + How many planes have ```NA``` in the speed column?
     
 ---
