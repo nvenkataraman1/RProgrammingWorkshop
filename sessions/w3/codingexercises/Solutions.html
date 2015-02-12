@@ -70,8 +70,8 @@ img {
 
 <div id="section1-vectors-and-matrices" class="section level1">
 <h1>Section1: Vectors and Matrices</h1>
-<div id="answer-q1" class="section level2">
-<h2>Answer Q1</h2>
+<div id="answer-1" class="section level2">
+<h2>Answer 1</h2>
 <pre class="r"><code>describe &lt;- function(data) {
     print(str(data))
     print(class(data))
@@ -261,7 +261,7 @@ sr</code></pre>
 </div>
 <div id="section-2-data-frames" class="section level1">
 <h1>Section 2: Data Frames</h1>
-<div id="answer-1" class="section level2">
+<div id="answer-1-1" class="section level2">
 <h2>Answer 1</h2>
 <pre class="r"><code>## a
 df &lt;- data.frame(normal=rnorm(1000), gaussian=rnorm(1000,mean=10),
@@ -275,7 +275,7 @@ df2 &lt;- data.frame(ID=seq(5), snacklevel=rbinom(5, size=5, prob=.4))
 df_merge &lt;- merge(df1,df2)
 
 df_merge[df_merge$names==&quot;Scooby&quot;,3]</code></pre>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 0</code></pre>
 </div>
 <div id="answer-2-1" class="section level2">
 <h2>Answer 2</h2>
