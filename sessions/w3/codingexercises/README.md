@@ -64,17 +64,23 @@ a. Create a data frame of length 1000 using a gaussian distribution
 b. How many snacks does Scooby get?
 
 
-```{r echo=FALSE}
-set.seed(12345)
-df1 <- data.frame(ID=seq(5), names=c("Scooby", "Shaggy", "Velma", "Daphne", "Fred"))
-df2 <- data.frame(ID=seq(5), snacklevel=rbinom(5, size=5, prob=.4))
-```
+| ID | names  |
+|:--:|:------:|
+| 1  | Scooby |
+| 2  | Shaggy |
+| 3  | Velma  |
+| 4  | Daphne |
+| 5  |  Fred  |
 
-```{r echo=FALSE}
-library(knitr)
-kable(df1, align="c")
-kable(df2, align="c")
-```
+
+
+| ID | snacklevel |
+|:--:|:----------:|
+| 1  |     3      |
+| 2  |     3      |
+| 3  |     3      |
+| 4  |     3      |
+| 5  |     2      |
 
 ### Q2. Describe these datasets
 
