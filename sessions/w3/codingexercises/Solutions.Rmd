@@ -1,0 +1,124 @@
+---
+title: "Solutions"
+author: "Naveen Venkataraman"
+date: "February 11, 2015"
+output: html_document
+---
+
+# Section1: Vectors and Matrices
+
+## Answer Q1
+
+```{r}
+
+describe <- function(data) {
+    print(str(data))
+    print(class(data))
+    print(typeof(data))
+    print(dim(data))
+}
+
+describe(state.abb)
+describe(state.area)
+describe(state.center)
+describe(state.division)
+describe(state.name)
+describe(state.region)
+describe(state.x77)
+```
+
+## Answer 2
+
+```{r}
+
+## a
+1000 * state.x77[,1] / state.x77[,8]
+
+which(1000 * state.x77[,1] / state.x77[,8] > 50)
+
+which((1000 * state.x77[,1] / state.x77[,8] > 50) & (state.x77[,3] < 1))
+
+## b
+
+head(sort(state.x77[,6], decreasing=TRUE),n = 3)
+
+head(sort(state.x77[,6]),n = 3)
+
+## c
+state.x77[state.x77[,2] > 4500 & state.x77[,5] < 7,4]
+
+mean(state.x77[state.x77[,2] > 4500 & state.x77[,5] < 7,8])
+
+```
+
+## Answer 3
+
+```{r}
+sr <- cbind(rownames(state.x77), as.character(state.region))
+colnames(sr) <- c("state","region")
+sr
+```
+
+## Answer 4
+
+```{r}
+20 * euro["ESP"]
+
+20 / euro["DEM"]
+
+20 * euro.cross["LUF", "ITL"]
+```
+
+# Section 2: Data Frames
+
+## Answer 1
+
+```{r}
+## a
+df <- data.frame(normal=rnorm(1000), gaussian=rnorm(1000,mean=10),
+                 unif=runif(1000), binom=rbinom(1000, size=1, prob=0.5))
+
+colnames(df) <- colnames(df)
+
+```
+
+```{r}
+## b
+df1 <- data.frame(ID=seq(5), names=c("Scooby", "Shaggy", "Velma", "Daphne", "Fred"))
+df2 <- data.frame(ID=seq(5), snacklevel=rbinom(5, size=5, prob=.4))
+
+df_merge <- merge(df1,df2)
+
+df_merge[df_merge$names=="Scooby",3]
+```
+
+
+## Answer 2
+
+```{r}
+library("nycflights13")
+describe(weather)
+describe(planes)
+describe(airports)
+describe(airlines)
+```
+
+## Answer 3
+
+```{r}
+## a
+table(weather$origin)
+
+## b
+weather[weather$origin == "JFK",]
+
+mean(weather[weather$origin == "JFK",8])
+
+## c
+sum(table(planes$engines)[2:4])
+
+table(is.na(planes$speed))[2] ## or
+table(complete.cases(planes$speed))[1] ## or
+length(planes[is.na(planes$speed),1])
+
+```

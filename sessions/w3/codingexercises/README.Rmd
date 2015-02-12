@@ -1,0 +1,108 @@
+---
+title: "Week 3 - Data Structures Practice Exercises"
+author: "Naveen Venkataraman"
+date: "February 12, 2015"
+output: html_document
+---
+
+# Section 1: Vectors, Matrices
+
+Datasets
+
+1. state.abb
+2. state.area
+3. state.center
+4. state.division
+5. state.name
+6. state.region
+7. state.x77
+
+Optional:
+
+1. euro
+2. euro.cross
+
+### Q1. Describe these datasets
+
++ Column-wise structure of data
++ Dimensions
++ Data contained within
++ Variable type
+
+### Q2. Vector operations and filtering
+
+a. Population per square mile
+    + Which states have populations greater than 50,000 per square mile?
+        + Of these states, which ones have Illiteracy rates below 1%?
+b. Top 3 states having the highest and lowest HS Graduation rates?
+c. Which states have the Murder rates below 7% or Income over 4500?
+    + What is the Life Expectancy in these states?
+    + Average Area of these states?
+
+### Q3. What regions do the states belong to? Create a 2 column dataset with respective column names.
+
+Use ```state.x77``` and ```state.region```
+
+### Q4. Exchange rate calculations using matrix operations
+
+Use ```euro``` and ```euro.cross``` datasets
+
+a. Convert 20 Euro to ESP
+b. Convert 20 DEM to Euro
+c. Convert 20 LUF to ITL
+
+---
+
+# Section 2: Data Frames
+
+### Q1. Creating and combining data frames
+
+a. Create a data frame of length 1000 using a gaussian distribution
+    + Generate 1000 values of these distributions: normal, uniform and binomial
+    + Combine all these distribution variables into a single data frame
+    + Set the column names to the names of each distribution
+b. How many snacks does Scooby get?
+
+```{r echo=FALSE}
+set.seed(12345)
+df1 <- data.frame(ID=seq(5), names=c("Scooby", "Shaggy", "Velma", "Daphne", "Fred"))
+df2 <- data.frame(ID=seq(5), snacklevel=rbinom(5, size=5, prob=.4))
+```
+
+```{r echo=FALSE}
+library(knitr)
+kable(df1, align="c")
+kable(df2, align="c")
+```
+
+### Q2. Describe these datasets
+
++ Column-wise structure of data
++ Dimensions
++ Data contained
++ Variable types
+
+Install and load package ```nycflights13```
+
+Datasets
+
+1. weather
+2. planes
+3. airports
+4. airlines
+
+### Q3. Logical operations
+
+a. How many flights depart from each Origin airport?
+b. List the information for flights originating from ```JFK```
+    + What is the average humidity for flights originating from ```JFK```
+c. How many ```planes``` have 2 or more engines?
+    + How many planes have ```NA``` in the speed column?
+    
+---
+
+# Section 3: Advanced
+
+Solve the exercises from: http://adv-r.had.co.nz/Data-structures.html
+
+---
