@@ -32,7 +32,7 @@ Datasets
     + Which states have populations greater than 50,000 per square mile?
         + Of these states, which ones have Illiteracy rates below 1%?
 2. Top 3 states having the highest and lowest HS Graduation rates?
-3. Which states have the Murder rates below 7% or Income over 4500?
+3. Which states have the Murder rates below 7% AND Income over 4500?
     + What is the Life Expectancy in these states?
     + Average Area of these states?
 
