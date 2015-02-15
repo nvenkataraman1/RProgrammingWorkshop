@@ -45,6 +45,8 @@ head(sort(state.x77[,6], decreasing=TRUE),n = 3)
 head(sort(state.x77[,6]),n = 3)
 
 ## c
+rownames(state.x77[state.x77[,2] > 4500 & state.x77[,5] < 7,])
+
 state.x77[state.x77[,2] > 4500 & state.x77[,5] < 7,4]
 
 mean(state.x77[state.x77[,2] > 4500 & state.x77[,5] < 7,8])

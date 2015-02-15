@@ -180,7 +180,12 @@ head(sort(state.x77[,6], decreasing=TRUE),n = 3)</code></pre>
 <pre><code>## South Carolina       Kentucky North Carolina 
 ##           37.8           38.5           38.5</code></pre>
 <pre class="r"><code>## c
-state.x77[state.x77[,2] &gt; 4500 &amp; state.x77[,5] &lt; 7,4]</code></pre>
+rownames(state.x77[state.x77[,2] &gt; 4500 &amp; state.x77[,5] &lt; 7,])</code></pre>
+<pre><code>##  [1] &quot;Colorado&quot;      &quot;Connecticut&quot;   &quot;Delaware&quot;      &quot;Hawaii&quot;       
+##  [5] &quot;Iowa&quot;          &quot;Kansas&quot;        &quot;Massachusetts&quot; &quot;Minnesota&quot;    
+##  [9] &quot;Nebraska&quot;      &quot;New Jersey&quot;    &quot;North Dakota&quot;  &quot;Oregon&quot;       
+## [13] &quot;Rhode Island&quot;  &quot;Washington&quot;    &quot;Wyoming&quot;</code></pre>
+<pre class="r"><code>state.x77[state.x77[,2] &gt; 4500 &amp; state.x77[,5] &lt; 7,4]</code></pre>
 <pre><code>##      Colorado   Connecticut      Delaware        Hawaii          Iowa 
 ##         72.06         72.48         70.06         73.60         72.56 
 ##        Kansas Massachusetts     Minnesota      Nebraska    New Jersey 
@@ -275,7 +280,7 @@ df2 &lt;- data.frame(ID=seq(5), snacklevel=rbinom(5, size=5, prob=.4))
 df_merge &lt;- merge(df1,df2)
 
 df_merge[df_merge$names==&quot;Scooby&quot;,3]</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 1</code></pre>
 </div>
 <div id="answer-2-1" class="section level2">
 <h2>Answer 2</h2>
