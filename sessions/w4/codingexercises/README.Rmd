@@ -38,7 +38,7 @@ c. What happens when you pass named arguments to the function?
 
 ---
 
-## Control Statements: Using Loops, ```if and else```, ```ifelse```
+## Control Statements: Using ```for``` loops, ```while``` loops, ```ifelse```
 
 #### Q3: Create a numeric vector of length 10. Pass it into a function to calculate and print the cumulative sum at each iteration.
 
