@@ -55,8 +55,11 @@ __Very important__: When using loops, you need to iterate (increase the value of
 
 #### Q6: Generate a 6x5 matrix using rnorm
 
+
 a. Calculate row means using ```apply``` / ```rowMeans```
+
 b. Calculate column means using ```apply``` / ```colMeans```
+
 c. Calculate ```rowSums``` and ```colSums```
 
 #### Q7: Use ```mtcars``` dataset
