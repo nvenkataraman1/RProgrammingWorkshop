@@ -61,7 +61,9 @@ c. Calculate ```rowSums``` and ```colSums```
 
 #### Q7: Use ```mtcars``` dataset
 
+
 a. Return a list of column variances
+
 b. Return a vector of column variances
 
 #### Q8: Create this dataset and return maximum batting average by team
