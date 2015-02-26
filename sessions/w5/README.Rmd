@@ -86,6 +86,8 @@ head(json_data)
 
 ## ```reshape2```
 
+Reference: http://seananderson.ca/2013/10/19/reshape.html
+
 #### Using ```melt``` to go from Wide to Long format
 
 ```{r}
@@ -128,3 +130,4 @@ dcast(aql, month + day ~ variable, fun.aggregate = mean,
 
 ## dplyr
 
+Reference: http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
