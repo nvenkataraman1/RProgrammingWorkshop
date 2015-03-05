@@ -70,34 +70,7 @@ xyplot(Life.Exp ~ Income | region, data=state, layout = c(4,1))
 
 ```r
 library(ggplot2)
-```
 
-```
-## 
-## Attaching package: 'ggplot2'
-## 
-## The following object is masked from 'mtcars':
-## 
-##     mpg
-## 
-## The following object is masked from 'mtcars':
-## 
-##     mpg
-## 
-## The following object is masked from 'mtcars':
-## 
-##     mpg
-## 
-## The following object is masked from 'mtcars':
-## 
-##     mpg
-## 
-## The following object is masked from 'mtcars':
-## 
-##     mpg
-```
-
-```r
 data(mpg)
 
 qplot(displ, hwy, data = mpg)
@@ -472,12 +445,20 @@ matplot(m, type="l")
 
 ```r
 # Q-Q plots
+x1 <- rnorm(100)
+
+qqnorm(x1)
+qqline(x1)
+```
+
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+
+```r
+# Comparing 2 distributions
 par(mfrow=c(1,2))
 
-# create sample data 
 x <- rt(100, df=3)
-
-# normal fit 
+# normal fit
 qqnorm(x); qqline(x)
 
 # t(3Df) fit 
@@ -486,6 +467,6 @@ qqplot(rt(1000,df=3), x, main="t(3) Q-Q Plot",
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-2.png) 
 
 Interpreting QQ Plots: http://stats.stackexchange.com/a/101290/21450

@@ -268,12 +268,16 @@ matplot(m, type="l")
  
 ```{r}
 # Q-Q plots
+x1 <- rnorm(100)
+
+qqnorm(x1)
+qqline(x1)
+
+# Comparing 2 distributions
 par(mfrow=c(1,2))
 
-# create sample data 
 x <- rt(100, df=3)
-
-# normal fit 
+# normal fit
 qqnorm(x); qqline(x)
 
 # t(3Df) fit 
