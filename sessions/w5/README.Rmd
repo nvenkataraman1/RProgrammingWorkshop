@@ -124,7 +124,7 @@ head(aqw)
 ```{r}
 dcast(aql, month ~ variable)
 
-dcast(aql, month + day ~ variable, fun.aggregate = mean, 
+dcast(aql, month ~ variable, fun.aggregate = mean, 
   na.rm = TRUE)
 ```
 

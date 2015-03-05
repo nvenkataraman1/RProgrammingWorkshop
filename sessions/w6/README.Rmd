@@ -1,0 +1,285 @@
+---
+title: 'Week 6: Graphics in R - Base graphics and ggplot2 (Part I)'
+author: "Naveen Venkataraman"
+date: "March 4, 2015"
+output: html_document
+---
+
+Materials for this class are adapted from the Johns Hopkins Coursera class on EDA by Prof. Roger Peng
+
+## Base Plotting System
+
++ Uses "Artist's Palette" model
++ Good for fast exploratory data analysis
++ Start with a plot() function
++ Add annotation functions: text, lines, points, axes
+++ Also title, labels, abline, color
+
+Drawbacks:
+
++ Need to plan in advance, can't change margins etc. once plotting starts
+
+```{r}
+library(datasets)
+data(cars)
+
+with(cars, plot(speed,dist))
+
+```
+
+---
+
+## Lattice Plotting System
+
++ Plots created with a single function call (xyplot, bwplot etc.)
++ Good for conditional type plotting
+    + Eg. How does Y change wrt X across Z levels
++ Good for plotting multiple plots on a single screen
++ Margins set automatically
+
+Drawbacks:
+
++ Awkward to specify entire plot in single function call
++ Difficult to annotate (compared to base and ggplot2)
++ Need to prepare the panelling of plots before-hand
++ Cannot add layer to plot once created
+
+```{r}
+library(lattice)
+
+state <- data.frame(state.x77, region=state.region)
+xyplot(Life.Exp ~ Income | region, data=state, layout = c(4,1))
+
+```
+
+---
+
+## Using ```ggplot2```
+
++ Based on "Grammar of Graphics" by Leland Wilkinson
++ Combines elements of Base and Lattice plotting
++ Automatically deals with spacings, but also allows you to add layers
++ Highly customizable
+
+#### Without layering
+
+```{r}
+library(ggplot2)
+
+data(mpg)
+
+qplot(displ, hwy, data = mpg)
+```
+
+#### With layering
+
+```{r}
+ggplot(mpg, aes(x=displ, y=hwy)) + 
+    geom_point() + 
+    xlab("Displacement") + 
+    ylab("Highway mileage")
+```
+
+---
+
+## Plotting with Base Graphics
+
+#### histogram
+
+```{r}
+library(datasets)
+
+hist(AirPassengers)
+
+hist(mtcars$disp)
+
+hist(mtcars$disp, breaks=100, col="Green")
+
+## density instead of frequency
+
+hist(mtcars$disp, breaks=100, col="Green", freq=FALSE)
+
+## density plot
+d <- density(mtcars$mpg)
+plot(d) # plots the results
+
+## filled density plot
+
+d <- density(mtcars$mpg)
+plot(d, main="Kernel Density of Miles Per Gallon")
+polygon(d, col="red", border="blue")
+```
+
+### Key Parameters
+
+Many base plotting functions share a set of parameters. Here are a few key ones:
+
++ ```pch```: the plotting symbol (default is open circle)
++ ```lty```: the line type (default is solid line), can be dashed, dotted, etc.
++ ```lwd```: the line width, specified as an integer multiple
++ ```col```: the plotting color, specified as a number, string, or hex code; the ```colors()``` function gives you a vector of colors by name
++ ```xlab```: character string for the x-axis label
++ ```ylab```: character string for the y-axis label
+
+#### scatterplot
+
+```{r}
+## population vs income
+plot(state.x77[,1], state.x77[,2])
+
+#### adding x and y labels - xlab and ylab
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income")
+
+#### adding color - col
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6))
+
+#### pch
+
+## changing type of point using pch
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), pch=20)
+
+## different point types for different variables
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), pch=c(3,20))
+
+#### cex
+
+## controlling size of symbols using ces
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), pch=c(3,20), cex=0.8)
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), pch=c(3,20), cex=1.2)
+
+```
+
+##### line graphs
+
+```{r}
+## line plots
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), type="l")
+
+## points and lines
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), type="b")
+
+## line type
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), type="b", lty=2)
+
+## different line type
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), type="b", lty=4)
+
+## line width
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6), type="b", lty=4, lwd=2)
+
+## abline
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6))
+abline(h=4000,col="red")
+abline(v=7000,col="blue", lty=3, lwd=4)
+
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6))
+model <- lm(state.x77[,2] ~ state.x77[,1])
+abline(model, lwd=2, lty=3)
+```
+
+#### labelling points
+
+```{r}
+## Example of labeling points
+
+plot(mtcars$wt, mtcars$mpg, main="Mileage vs. Car Weight", 
+  	xlab="Weight", ylab="Mileage", pch=18, col="blue")
+text(mtcars$wt, mtcars$mpg, row.names(mtcars), cex=0.6, pos=4, col="red")
+```
+
+
+#### Illustrating all ```type=``` values
+
+```{r}
+x <- c(1:5); y <- x # create some data 
+par(pch=22, col="red") # plotting symbol and color 
+par(mfrow=c(2,4)) # all plots on one page 
+opts = c("p","l","o","b","c","s","S","h") 
+for(i in 1:length(opts)){ 
+  heading = paste("type=",opts[i]) 
+  plot(x, y, type="n", main=heading) 
+  lines(x, y, type=opts[i]) 
+}
+```
+
+References:
+
+1. pch: 0 to 25 (refer: http://www.endmemo.com/program/R/pchsymbols.php)
+2. lty: 1 to 6
+3. lwd: 1 to 8
+
+#### boxplot
+
+```{r}
+library(datasets)
+boxplot(state.x77)
+boxplot(scale(state.x77))
+
+## population
+boxplot(state.x77[,1], ylab="Population")
+title("Boxplot of State Populations")
+
+# Boxplot of MPG by Car Cylinders 
+boxplot(mpg~cyl,data=mtcars, main="Car Milage Data", 
+  	xlab="Number of Cylinders", ylab="Miles Per Gallon")
+
+```
+
+---
+
+#### Multiple plots on screen
+
+```{r}
+## Row-wise
+par(mfrow=c(2,1))
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6))
+
+plot(state.x77[,1], ylab="Population")
+```
+
+```{r}
+## Column-wise
+par(mfcol=c(1,2))
+plot(state.x77[,1], state.x77[,2], xlab="Population", ylab="Income", col=c(3,6))
+
+plot(state.x77[,1], ylab="Population")
+
+```
+
+---
+
+
+#### ```matplot```
+
+```{r}
+JohnsonJohnson
+
+class(JohnsonJohnson)
+
+m <- matrix(JohnsonJohnson, ncol=4, byrow = TRUE)
+m
+
+matplot(m, type="l")
+
+matplot(m, type="l")
+```
+
+#### ```Q-Q Plots```
+ 
+```{r}
+# Q-Q plots
+par(mfrow=c(1,2))
+
+# create sample data 
+x <- rt(100, df=3)
+
+# normal fit 
+qqnorm(x); qqline(x)
+
+# t(3Df) fit 
+qqplot(rt(1000,df=3), x, main="t(3) Q-Q Plot", 
+   ylab="Sample Quantiles")
+abline(0,1)
+```
+
+Interpreting QQ Plots: http://stats.stackexchange.com/a/101290/21450
