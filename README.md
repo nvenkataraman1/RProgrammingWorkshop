@@ -4,89 +4,107 @@
 
 ---
 
-#### Materials for the R Programming Workshop
+#### Materials for the R Programming Workshop - Spring 2015
 
 ---
 
 ## Workshop Outline
 
-Session 1 (1/29): Introduction
+### Session 1 (4/11): Introduction
 
-+ Installing R
-+ Customizing RStudio
+**Pre-requisites for this class**
+
+1. Install R - http://www.r-project.org/
+2. Install RStudio - http://www.rstudio.com/products/rstudio/download/
+
+**Topics Covered**
+
++ Installing R and RStudio
 + RStudio IDE features
-    + Working on Console
-    + Source files
-    + Files
-    + Environment
-    + History
-    + Plots
-    + Packages
-+ Installing and Loading packages
-    + From CRAN
-    + From github
-+ Managing an R Session: Working Directory, .RData, .Rhistory
-+ Workflow best practices
++ Customizing the RStudio Environment
++ Creating and Managing a RStudio Project
++ Installing and Loading ```packages```
++ Dynamic Reporting with RMarkdown
 + Resources
-    + Stackoverflow - http://stackoverflow.com/search?q=rstats
-    + [/r/rstats](https://www.reddit.com/r/rstats) 
-        and [/r/RStudio]((https://www.reddit.com/r/rstats))
-    + R Bloggers - http://www.r-bloggers.com/
-+ Thinking about Programming using Pseudocode
-+ In-class Practice Problems
-+ Assignment discussion
+    + Class website 
+        + [/r/uchicagorprogramming](https://www.reddit.com/r/uchicagorprogramming)
+    + R resources
+        + [/r/rstats](https://www.reddit.com/r/rstats)
+        + [/r/RStudio](https://www.reddit.com/r/RStudio)
+        + R Bloggers - http://www.r-bloggers.com/
+    + Programming Questions?
+        + Stackoverflow - http://stackoverflow.com/search?q=rstats
++ Having fun with R
++ In-class Practice
 
-Session 2 (2/5): Data Structures in R
+---
+
+### Session 2 (4/18): Data Structures in R - Part I
+
+**Topics Covered**
 
 + Atomic Vectors
     + Types and tests
     + Coercion
 + Matrices and Arrays
++ In-class Practice
+
+---
+
+### Session 3 (4/25): Data Structures in R - Part II
+
+**Topics Covered**
+
 + Data frames
 + Factors
 + Lists
-+ Assignment discussion
++ In-class Practice
 
-Session 3 (2/12): Functions in R
+---
+
+### Session 4 (5/2): Functions in R
+
+**Topics Covered**
 
 + Function components
 + Control Flow
 + Lexical scoping
-+ Arguments
-+ Return values
-+ Special use cases
-+ Assignment discussion
++ Arguments and Return values
++ ```apply``` family of functions
++ In-class Practice
 
-Session 4 (2/19): Data Munging in R
+--- 
+
+### Session 5 (5/9): Data Munging in R
+
+**Topics Covered**
 
 + Reading data into R
-    + Delimited text files
-    + Web
-    + Other use cases
-    + Using _fread()_
-+ Data Management
-    + Working with variables
-    + Working with missing values
-+ Subsetting
-+ _dplyr_
-+ Assignment discussion
+    + _haven_
++ Reshaping data
+    + _reshape2_
+    + _tidyr_
++ Analyzing data using _dplyr_
++ In-class Practice
 
-Session 5 (2/26): Graphics in R
+---
 
-+ Using base graphics
+### Session 6 (5/16): Graphics in R - Part I
+
+**Topics Covered**
+
++ Introduction to plotting
++ Using __base__ graphics
++ In-class Practice
+
+---
+
+### Session 7 (5/23): Graphics in R - Part II
+
+**Topics Covered**
+
 + Using _ggplot2_
-+ Assignment discussion
-
-Session 6 (3/5): Creating Dynamic Reports in R
-
-+ _rmarkdown_
-+ _knitr_
-+ _kable_
-+ Pandoc
-+ LaTeX
-+ Assignment discussion
-
-Session 7 (3/12): Review of individual sessions and assignments
++ In-class Practice
 
 ---
 
@@ -96,18 +114,21 @@ Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprog
 
 ---
 
-### Recommended books
+### Books used in this Workshop
+
+1. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
+2. [R Graphics Cookbook](http://bit.ly/RGraphicsCookbook) (for ggplot2) - Winston Chang
+
+### Recommended books (you don't have to buy these)
 
 1. [R for Everyone](http://amzn.to/1CIUvcY) - Jared Lander
 2. [R in Action](http://manning.com/kabacoff2) - Rob Kabacoff
-3. [The Art of R Programming](http://bit.ly/ArtRProg) - Norman Matloff
-4. [R Cookbook](http://amzn.to/1EDFsmI) - Paul Teetor
+3. [R Cookbook](http://amzn.to/1EDFsmI) - Paul Teetor
 
 Reference books (optional)
 
 1. [Advanced R](http://adv-r.had.co.nz) - Hadley Wickham
-2. [R Graphics Cookbook](http://bit.ly/RGraphicsCookbook) (for ggplot2) - Winston Chang
-3. [The R Inferno (PDF copy)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Patrick Burns
+2. [The R Inferno (PDF copy)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) - Patrick Burns
 
 ---
 
