@@ -41,6 +41,10 @@
 
 ### Session 2 (4/18): Data Structures in R - Part I
 
+**Reading list:** Chapters 2 (Vectors) and 3 (Matrices and Arrays) from the book "The Art of R Programming" by Norman Matloff
+
+Note: Chapter numbers may be different depending on edition. Please go by the topic name.
+
 **Topics Covered**
 
 + Atomic Vectors
@@ -53,6 +57,10 @@
 
 ### Session 3 (4/25): Data Structures in R - Part II
 
+**Reading list:** Chapters 4 (Lists), 5 (Data Frames) and 6 (Factors and Tables) from the book "The Art of R Programming" by Norman Matloff.
+
+Note: Chapter numbers may be different depending on edition. Please go by the topic name.
+
 **Topics Covered**
 
 + Data frames
@@ -63,6 +71,11 @@
 ---
 
 ### Session 4 (5/2): Functions in R
+
+**Reading list:**
+
+1. Chapter 7 (R Programming Structures) from the book "The Art of R Programming" by Norman Matloff.
+2. ```apply``` family of functions - http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/7141669#7141669. Focus on ```apply```, ```lapply```, ```sapply``` and ```tapply``` (you can ignore the rest for now, if it feels too complex)
 
 **Topics Covered**
 
