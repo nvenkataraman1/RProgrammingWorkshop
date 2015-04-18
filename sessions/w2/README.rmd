@@ -1,7 +1,7 @@
 ---
 title: "R Workshop - Session 2"
 author: "Naveen Venkataraman"
-date: "February 5, 2015"
+date: "April 18, 2015"
 output: html_document
 ---
 
