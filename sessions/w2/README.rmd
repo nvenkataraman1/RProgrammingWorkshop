@@ -1,0 +1,540 @@
+---
+title: "R Workshop - Session 2"
+author: "Naveen Venkataraman"
+date: "February 5, 2015"
+output: html_document
+---
+
+# Overview of today's session
+
+1. Atomic Vectors
+2. Matrices and Arrays
+
+Next week:
+
+3. Data frames
+4. Factors
+5. Lists
+
+References for today's session:
+
+1. Advanced R by Hadley Wickham
+2. The Art of R Programming by Norman Matloff
+
+---
+
+## Housekeeping Before We Begin
+
+In R,
+
+1. No static typing, means
+    + No upfront variable type declarations necessary
+    + Variable type can change without explicit recasting
+2. Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they cannot start with a number or an underscore
+3. Index values start from 1 (starts from 0 in Java, C++ etc.) This means, there's no 0-th element.
+
+---
+
+# Data Types in R
+
+R's data types can be organized based on:
+
+1. Dimensionality
+2. Homogenous (all contents are same)
+3. Heterogenous (contents can be different)
+
+|Dimension|Homogenous |Heterogenous|
+|----------:|----------:|----------:|
+|1d| Atomic Vector|List|
+|2d| Matrix| Data Frame|
+|nd| Array||
+
+---
+
+## Vectors
+
+Simplest data type in R. Variable types are called ```modes```.
+
+Note: R does not have a ```scalar``` data type. Scalars in R are vectors of length = 1.
+
+Modes include:
+
+1. numeric
+    + integer (whole numbers, no decimals)
+    + double (floating-point)
+2. character (string)
+3. logical
+4. complex
+5. raw
+
+We will only talk about numeric, character and logical modes today.
+
+### Numeric: double
+
+```{r}
+num_vec <- c(1,3,5)
+num_vec
+
+typeof(num_vec)
+
+is.numeric(num_vec)
+
+is.double(num_vec)
+
+(mode(num_vec) == "numeric")
+```
+
+### Numeric: integer
+
+```{r}
+
+int_vec <- c(5L)
+
+typeof(int_vec)
+
+is.numeric(int_vec)
+
+is.integer(int_vec)
+
+is.double(int_vec)
+
+```
+
+### Character vectors
+
+```{r}
+char_vec <- c("Hello", "World")
+
+char_vec
+
+typeof(char_vec)
+
+is.character(char_vec)
+
+length(char_vec)
+
+```
+
+### Logical vectors
+
+```{r}
+log_vec <- rep(c(TRUE, FALSE), each=20)
+log_vec
+
+is.logical(log_vec)
+
+is.numeric(log_vec)
+
+is.character(log_vec)
+```
+
+#### Illustrating Usage of Logical Vector return values
+
+```{r}
+num <- c(1:50)
+
+num %% 2 == 0
+
+table(num %% 2 == 0)
+
+which(num %% 2 == 0)
+
+typeof(num %% 2 == 0)
+
+## Complete.cases and is.na()
+sample <- cbind(col1=rep(c(1,NA,3)),col2=rep(c(NA,4,6)))
+
+typeof(sample)
+
+is.na(sample)
+
+complete.cases(sample)
+
+```
+
+
+### Type coercion
+
+```{r}
+
+
+int_vec <- c(int_vec, 6)
+
+is.numeric(int_vec)
+
+is.integer(int_vec)
+
+is.double(int_vec)
+
+```
+
+### Typecasting
+
+```{r}
+
+another_int_vec <- as.integer(3,19)
+
+is.numeric(another_int_vec)
+
+is.integer(another_int_vec)
+
+is.double(another_int_vec)
+
+```
+
+### Indexing
+
+Individual elements are accessed via __```[ ]```__ by using an __```index```__ or __```subscript```__
+
+```{r}
+num_vec[1]
+num_vec[2]
+
+num_vec[4]
+
+num_vec[0]
+
+```
+
+### Common Vector Operations
+
+#### Adding and Removing elements
+
+```{r}
+num_vec[4] <- 7 ## You can only do this if you know the dimensions and if you know the last used index
+num_vec
+
+num_vec <- c(num_vec,9)
+num_vec
+
+num_vec <- num_vec[-1]
+num_vec
+
+```
+
+#### Math operations on vectors
+
+Includes:
+
++ addition: +
++ subtraction: -
++ multiplication: *
++ division: /
++ modulo: %%
+
+```{r}
+vec_1 <- seq(1:3)
+
+length(vec_1)
+
+#vec_2 <- seq(1:20, by=2)
+
+vec_2 <- seq(1, 20, by=2)
+
+length(vec_2)
+
+## Recycling of smaller vectors when operating with larger vectors
+
+vec_2
+
+vec_1
+
+vec_2 + vec_1
+
+vec_3 <- seq(1, 20, by=3)
+
+vec_3 + vec_1
+
+1:10 %% 2
+
+## Seq in loop operations
+
+x <- rnorm(5)
+
+for(i in seq_along(x)) {
+    print(x[i])
+}
+
+```
+
+#### Using rep()
+
+```{r}
+vec <- rep(1, 5)
+vec
+
+rep(c(5,12,13),3)
+
+rep(c(5,12,13),each=2)
+
+```
+
+#### Filtering: Conditional
+
+```{r}
+## Single condition
+
+num_vec <- runif(5000, min=1, max=5000)
+
+range(num_vec)
+
+hist(num_vec)
+
+#num_vec[num_vec >= 2500]
+
+length(num_vec[num_vec >= 2500])
+
+## Compound conditions
+
+comp_vec <- seq(1000)
+
+range(comp_vec)
+
+length(comp_vec[(comp_vec >= 250 & comp_vec < 500)])
+
+```
+
+#### Filtering: Using ```subset```
+
+```{r}
+x <- c(6,1:3,NA,12)
+
+x
+
+x[x > 5]
+
+subset(x, x > 5)
+
+```
+
+#### Naming vector positions
+
+```{r}
+x <- 1:3
+x
+
+names(x) <- c("one", "two", "three")
+
+x
+
+x["one"]
+
+x["two"]
+
+x["three"]
+```
+
+---
+
+## Matrices and Arrays
+
+1. A __Matrix__ is a special type of array which has 2 dimensions.
+2. A matrix is also a vector with two additional attributes: 
+    + the *__number of rows__*
+    + the *__number of columns__*
+3. Matrices and arrays are created with *__matrix()__* and *__array()__*, 
+4. You can check the dimensions using ```dim()```
+
+### Creating a matrix
+
+```{r}
+mat1 <- matrix(1:12)
+mat1
+
+mat1 <- matrix(1:12, nrow=3)
+mat1
+
+mat1 <- matrix(1:12, ncol=3)
+mat1
+
+mat1 <- matrix(1:12, ncol=3, byrow=TRUE)
+mat1
+
+```
+
+### General Matrix Operations
+
+#### Linear Algebra Operations Using Matrices
+
+```{r}
+
+mat1 <- matrix(1:4,nrow=2)
+mat1
+
+mat2 <- matrix(5:8,nrow=2)
+mat2
+
+## Matrix Addition
+
+mat1 + mat2
+
+mat3 <- matrix(1:9, nrow=3)
+mat3
+
+## Illustration of length difference
+#mat1 + mat3
+
+## Matrix Multiplication
+
+mat1 %*% mat2 ## Note the %*% operator
+
+## Regular element by element multiplication
+
+mat1
+mat2
+
+mat1 * mat2
+
+## Illustration of dimension difference 
+
+## mat1 %*% mat3
+
+dim(mat1)
+dim(mat3)
+
+## Matrix element naming
+mat1
+names(mat1)
+
+names(mat1) <- c("a","b")
+
+names(mat1)
+
+mat1
+mat1["a"]
+```
+
+#### Matrix Indexing
+
+Matrix indexing takes the form:
+
+mat_variable[row, column]
+
+```{r}
+mat1 <- matrix(1:4,nrow=2)
+mat1
+
+mat1[1,] ## row
+
+mat1[,1] ## column
+
+mat1[1,2] ## unique element
+
+mat1[-1,] ## excluding row
+
+mat1[,-2] ## excluding column
+
+## Changing specific rows
+
+mat3 <- matrix(1:9, ncol=3)
+mat3
+
+mat3[c(1,3),] <- matrix(1:6, nrow=2, byrow=TRUE)
+mat3
+
+mat4 <- matrix(1:9, ncol=3)
+mat4
+
+mat4[,c(1,3)] <- matrix(10:15, nrow=2)
+mat4
+
+```
+
+#### Filtering Matrices
+
+```{r}
+mat5 <- matrix(c(1:6,rep(NA, 3),10:12), nrow=6)
+mat5
+
+complete.cases(mat5)
+mat5[complete.cases(mat5),]
+
+mat6 <- matrix(1:9, nrow=3, byrow=TRUE)
+mat6
+
+mat6[mat6[,2] > 4,]
+
+## Be Cognizant of return types
+
+mat7 <- matrix(seq(4),nrow=2)
+mat7
+attributes(mat7)
+
+mat8 <- mat7[,2]
+mat8
+attributes(mat8)
+
+## Using drop
+
+mat9 <- mat7[,2,drop=FALSE]
+mat9
+attributes(mat9)
+
+
+## Using as.matrix
+
+mat10 <- matrix(seq(25), nrow=5)
+mat10
+dim(mat10)
+
+mat11 <- mat10[,c(2)]
+mat11
+dim(mat11)
+
+mat11 <- as.matrix(mat10[,c(2)])
+mat11
+dim(mat11)
+
+```
+### Adding / Removing Matrix Rows and Columns
+
+Technically, matrices are of fixed length and dimensions, so we cannot add or delete rows or columns. However, matrices can be reassigned, and thus we can achieve the same effect as if we had directly done additions or deletions.
+
+This is done using ```rbind()``` (to append rows) and ```cbind()``` to append columns.
+
+```{r}
+mat1 <- matrix(1:20, nrow=5)
+mat1
+
+rbind(mat1, c(40:43))
+
+mat1 <- rbind(mat1, c(40:43))
+mat1
+
+mat2 <- matrix(1:9, nrow=3, byrow = TRUE)
+mat2
+
+cbind(mat2, matrix(100:102, ncol=1))
+
+mat2 <- cbind(mat2, matrix(100:102, ncol=1))
+mat2
+
+```
+
+---
+
+## Arrays
+
+### Creating an Array
+
+```{r}
+
+first <- matrix(seq(700,1500, by=100), nrow=3)
+first
+
+second <- matrix(seq(250,650, by=50), nrow=3)
+second
+
+third <- matrix(seq(2000,2800, by=100), nrow=3)
+third
+
+a1 <- array(data=c(first, second, third), dim=c(3,3,3))
+a1
+
+dim(a1)
+
+```
+
+
+
+---
