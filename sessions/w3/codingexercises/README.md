@@ -1,7 +1,7 @@
 ---
 title: "Week 3 - Data Structures Practice Exercises"
 author: "Naveen Venkataraman"
-date: "February 12, 2015"
+date: "April 25, 2015"
 output: html_document
 ---
 
