@@ -30,8 +30,7 @@ Write a function to pass the radius and calculate circular area
 
 #### Q2: Passing Multiple Arguments
 
-Using the ```euro.cross``` dataset, do the following:
-
+Using the ```euro.cross``` dataset, do the following
 
 a. Create a function to take in 2 currencies and print exchange rate
 b. What happens when you reverse the order of function arguments?
