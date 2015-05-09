@@ -9,6 +9,15 @@ output: html_document
 
 ## From Excel
 
+```{r}
+library(readxl)
+
+xl_data <- read_excel("./data/gpa.xlsx")
+head(xl_data)
+```
+
+
+
 Install the ```gdata```, ```XLConnect``` and ```xlsx``` packages
 
 ```{r results='hide', message=FALSE}
