@@ -1,0 +1,133 @@
+---
+title: 'Week 5: Reading Data and Data Munging'
+author: "Naveen Venkataraman"
+date: "May 9, 2015"
+output: html_document
+---
+
+# Reading Data
+
+## From Excel
+
+Install the ```gdata```, ```XLConnect``` and ```xlsx``` packages
+
+```{r results='hide', message=FALSE}
+library(gdata)
+
+gdata_xls <- read.xls("./data/elsec12_sttables.xls", sheet=1, header = TRUE)
+
+head(gdata_xls)
+```
+
+```{r results='hide', message=FALSE}
+library(XLConnect)
+
+wb <- loadWorkbook("./data/elsec12_sttables.xls")
+
+xlconnect_data <- readWorksheet(wb, sheet = "1", header = TRUE)
+
+head(xlconnect_data)
+```
+
+```{r results='hide', message=FALSE}
+library(xlsx)
+
+xlsx_data <- read.xlsx2("./data/elsec12_sttables.xls", sheetName = "1")
+
+head(xlsx_data)
+```
+
+## haven Package
+
+Install the ```haven``` package from github: https://github.com/hadley/haven
+
+```{r results='hide', message=FALSE}
+library(haven)
+```
+
+## From SAS
+
+```{r results='hide', message=FALSE}
+sas_data <- read_sas("./data//money.sas7bdat")
+
+head(sas_data)
+```
+
+## From SPSS
+
+```{r results='hide', message=FALSE}
+spss_data <- read_sav("./data//airline_passengers.sav")
+
+head(spss_data)
+```
+
+## From STATA
+
+```{r results='hide', message=FALSE}
+stata_data <- read_dta("./data//stata_sampledata_crime.dta")
+
+head(stata_data)
+```
+
+## From JSON
+
+```{r results='hide', message=FALSE}
+library(jsonlite)
+
+url <- "http://fantasy.premierleague.com/web/api/elements/"
+json_data <- fromJSON(paste0(url,1))
+
+head(json_data)
+```
+
+---
+
+# Data Munging
+
+## ```reshape2```
+
+Reference: http://seananderson.ca/2013/10/19/reshape.html
+
+#### Using ```melt``` to go from Wide to Long format
+
+```{r}
+names(airquality) <- tolower(names(airquality))
+head(airquality)
+
+library(reshape2)
+
+aql <- melt(airquality)
+
+head(aql)
+tail(aql)
+
+```
+
+#### Using ```id``` variables in ```melt```
+
+```{r}
+aql <- melt(airquality, id.vars = c("month", "day"))
+head(aql)
+
+head(aql)
+tail(aql)
+```
+
+#### Using ```cast``` to cast data from Long to Wide format
+
+```{r}
+aql <- melt(airquality, id.vars = c("month", "day"))
+aqw <- dcast(aql, month + day ~ variable)
+head(aqw)
+```
+
+```{r}
+dcast(aql, month ~ variable)
+
+dcast(aql, month ~ variable, fun.aggregate = mean, 
+  na.rm = TRUE)
+```
+
+## dplyr
+
+Reference: http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
