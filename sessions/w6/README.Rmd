@@ -13,7 +13,7 @@ Materials for this class are adapted from the Johns Hopkins Coursera class on ED
 + Good for fast exploratory data analysis
 + Start with a plot() function
 + Add annotation functions: text, lines, points, axes
-++ Also title, labels, abline, color
++ Also title, labels, abline, color
 
 Drawbacks:
 
