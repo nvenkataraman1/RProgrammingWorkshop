@@ -100,3 +100,53 @@ sample_n(data.df, 70)
 sample_frac(data.df, .6)
 ```
 
+#### joins
+
+1. inner_join(x, y)
+
++ all rows from x where there are matching values in y
++ **ALL** columns from x **AND** y
++ if there are multiple matches between x and y
+    + all combination of the matches are returned
+
+```{r}
+library(readr)
+
+flavors <- read_csv("./data/icecream_flavors.csv")
+flavors
+
+brands <- read_csv("./data/icecream_brands.csv")
+brands
+
+inner_join(flavors, brands)
+```
+
+2. semi_join(x, y)
+
++ all rows from x where there are matching values in y
++ _only columns from x_
++ _won't return duplicate rows_
+
+```{r}
+semi_join(flavors, brands)
+```
+
+3. left_join(x, y)
+
++ all rows from x
++ **ALL** columns from x **AND** y
++ _all combination of matches_
+
+```{r}
+left_join(flavors, brands)
+```
+
+4. anti_join(x, y)
+
++ all rows from x where **NO** matching values in y
++ only columns from x
+
+```{r}
+anti_join(flavors, brands)
+```
+
