@@ -233,13 +233,10 @@ ggplot(data=mtcars, aes(x=wt, y=mpg)) +
 ```
 
 + ggplot
-    + initializes plot
-    + specifies dataset
-    + specifies variables
-    + *does not* provide visual output
-+ aes
-    + how the information is represented visually
-    + options in aes() - specifies what role each variable will play
+    + Based on Graphics of Grammar
+        + data (in data frame format)
+        + geometry of one or multiple aesthetics
+
 + geom
     + short for ```Geometric objects```
         + includes 
@@ -248,6 +245,9 @@ ggplot(data=mtcars, aes(x=wt, y=mpg)) +
             + bars
             + boxplots
             + density plots
++ aes
+    + how the information is represented visually
+    + options in aes() - specifies what role each variable will play
 + Optional annotations
 
 ---
