@@ -1,0 +1,231 @@
+---
+title: "Week 3 - Data Munging in R - Part 1"
+author: "Naveen Venkataraman"
+date: "October 17, 2015"
+output: html_document
+---
+
+# Reading Data
+
+## From Excel
+
+```{r}
+library(readxl)
+
+xl_data <- read_excel("./data/gpa.xlsx")
+head(xl_data)
+```
+
+## ```haven``` Package
+
+```{r results='hide', message=FALSE}
+library(haven)
+```
+
+## From SAS
+
+```{r results='hide', message=FALSE}
+sas_data <- read_sas("./data//money.sas7bdat")
+
+head(sas_data)
+```
+
+## From SPSS
+
+```{r results='hide', message=FALSE}
+spss_data <- read_sav("./data//airline_passengers.sav")
+
+head(spss_data)
+```
+
+## From STATA
+
+```{r results='hide', message=FALSE}
+stata_data <- read_dta("./data//stata_sampledata_crime.dta")
+
+head(stata_data)
+```
+
+## From JSON
+
+```{r results='hide', message=FALSE}
+library(jsonlite)
+
+url <- "http://fantasy.premierleague.com/web/api/elements/1"
+json_data <- fromJSON(url)
+
+head(json_data)
+```
+
+---
+
+## tidyr
+
+Functions
+
++ gather(): make _wide_ data _long_
+    + used _key-value_ pair
++ spread(): make _long_ data _wide_
+    + using _key_ and _value_
++ separate(): splits single column into multiple columns
++ unite(): combines multiple columns into single column
+
+```{r}
+library(readr)
+
+jj.df <- read_csv("./data/stockprice.csv")
+jj.df
+```
+
+This data is considered wide since the time variable (represented as quarters) is structured such that each quarter represents a variable.
+
+To represent time as a variable, we reshape the data.
+
+## gather
+
+```{r}
+library(tidyr)
+library(magrittr)
+
+jj_long <- jj.df %>%
+    gather(Quarter, Price, Qtr.1:Qtr.4)
+jj_long
+```
+
+## separate
+
+```{r}
+jj_long <- jj_long %>% 
+                separate(Quarter, c("Time_Interval","Interval_ID"))
+```
+
+
+## unite
+
+```{r}
+jj_long_united <- jj_long %>% 
+                    unite(Qtr, Time_Interval, Interval_ID, sep=".")
+```
+
+## spread
+
+```{r}
+jj_wide <- jj_long_united %>%
+                spread(Qtr, Price)
+```
+
+## Exercise: Use ```tidyr``` to reshape this data
+
+```{r}
+library(jsonlite)
+url <- "http://fx.priceonomics.com/v1/rates/"
+fxrates <- fromJSON(url)
+
+tfxrates <- t(t(fxrates))
+fxrates.df <- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
+
+fxrates.df <- fxrates.df %>% 
+                    separate(xchg, c("From","To"))
+
+fxrates.wide <- fxrates.df %>% 
+                    spread(To, rate)
+
+fxrates.wide
+```
+
+---
+
+## dplyr
+
+Functions
+
++ select(): select variables
++ filter(): filter by criteria
+    + also see slice()
++ group_by(): groups by categorical levels
++ arrange(): order data
++ mutate(): 
+    + also see transmute()
++ summarise(): summary output
++ sample_n() and sample_frac()
++ join(): joining two dataframes (similar to joins in SQL)
+
+```{r}
+library(dplyr)
+
+soccerdata <- read_csv("./data/soccer.csv")
+dim(soccerdata)
+head(soccerdata)
+```
+
+#### select
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points)
+```
+
+#### filter
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    filter(now_cost > 5 & total_points > 30, team_name == "Arsenal")
+```
+
+#### group_by and summarise
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+```
+
+#### arrange
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    arrange(desc(team_name))
+```
+
+#### mutate and transmute
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    mutate(league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    transmute(team_name = team_name, 
+              league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+    
+```
+
+#### sample_n() and sample_frac()
+
+```{r}
+data.df <- data.frame(y1=rnorm(100),x1=rnorm(100),x2=rnorm(100))
+head(data.df)
+
+dim(data.df)
+
+sample_n(data.df, 70)
+sample_frac(data.df, .6)
+```
+
