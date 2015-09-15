@@ -1,231 +1,318 @@
 ---
-title: "Week 3 - Data Munging in R - Part 1"
+title: "Week 5 - Data Structures in R"
 author: "Naveen Venkataraman"
-date: "October 17, 2015"
+date: "October 31, 2015"
 output: html_document
 ---
 
-# Reading Data
+## Data Types in R
 
-## From Excel
+R's data types can be organized based on:
 
-```{r}
-library(readxl)
+1. Dimensionality
+2. Homogenous (all contents are same)
+3. Heterogenous (contents can be different)
 
-xl_data <- read_excel("./data/gpa.xlsx")
-head(xl_data)
-```
-
-## ```haven``` Package
-
-```{r results='hide', message=FALSE}
-library(haven)
-```
-
-## From SAS
-
-```{r results='hide', message=FALSE}
-sas_data <- read_sas("./data//money.sas7bdat")
-
-head(sas_data)
-```
-
-## From SPSS
-
-```{r results='hide', message=FALSE}
-spss_data <- read_sav("./data//airline_passengers.sav")
-
-head(spss_data)
-```
-
-## From STATA
-
-```{r results='hide', message=FALSE}
-stata_data <- read_dta("./data//stata_sampledata_crime.dta")
-
-head(stata_data)
-```
-
-## From JSON
-
-```{r results='hide', message=FALSE}
-library(jsonlite)
-
-url <- "http://fantasy.premierleague.com/web/api/elements/1"
-json_data <- fromJSON(url)
-
-head(json_data)
-```
+|Dimension|Homogenous |Heterogenous|
+|----------:|----------:|----------:|
+|1d| **Atomic Vector**|List|
+|2d| **Matrix**| **Data Frame**|
+|nd| Array||
 
 ---
 
-## tidyr
+### Some key points
 
-Functions
+In R,
 
-+ gather(): make _wide_ data _long_
-    + used _key-value_ pair
-+ spread(): make _long_ data _wide_
-    + using _key_ and _value_
-+ separate(): splits single column into multiple columns
-+ unite(): combines multiple columns into single column
-
-```{r}
-library(readr)
-
-jj.df <- read_csv("./data/stockprice.csv")
-jj.df
-```
-
-This data is considered wide since the time variable (represented as quarters) is structured such that each quarter represents a variable.
-
-To represent time as a variable, we reshape the data.
-
-## gather
-
-```{r}
-library(tidyr)
-library(magrittr)
-
-jj_long <- jj.df %>%
-    gather(Quarter, Price, Qtr.1:Qtr.4)
-jj_long
-```
-
-## separate
-
-```{r}
-jj_long <- jj_long %>% 
-                separate(Quarter, c("Time_Interval","Interval_ID"))
-```
-
-
-## unite
-
-```{r}
-jj_long_united <- jj_long %>% 
-                    unite(Qtr, Time_Interval, Interval_ID, sep=".")
-```
-
-## spread
-
-```{r}
-jj_wide <- jj_long_united %>%
-                spread(Qtr, Price)
-```
-
-## Exercise: Use ```tidyr``` to reshape this data
-
-```{r}
-library(jsonlite)
-url <- "http://fx.priceonomics.com/v1/rates/"
-fxrates <- fromJSON(url)
-
-tfxrates <- t(t(fxrates))
-fxrates.df <- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
-
-fxrates.df <- fxrates.df %>% 
-                    separate(xchg, c("From","To"))
-
-fxrates.wide <- fxrates.df %>% 
-                    spread(To, rate)
-
-fxrates.wide
-```
+1. No static typing, means
+    + No upfront variable type declarations necessary
+    + Variable type can change without explicit recasting
+2. Variable names can contain any combination of alphanumeric characters along with periods (.) and underscores (_). However, they cannot start with a number or an underscore
+3. Index values start from 1. This means, there's no 0-th element.
 
 ---
 
-## dplyr
+## Atomic Vector (henceforth refered to as ```vector```)
 
-Functions
+Simplest data type in R. Variable types are called ```modes```.
 
-+ select(): select variables
-+ filter(): filter by criteria
-    + also see slice()
-+ group_by(): groups by categorical levels
-+ arrange(): order data
-+ mutate(): 
-    + also see transmute()
-+ summarise(): summary output
-+ sample_n() and sample_frac()
-+ join(): joining two dataframes (similar to joins in SQL)
+Note: R does not have a ```scalar``` data type. Scalars in R are vectors of length = 1.
 
-```{r}
-library(dplyr)
+Modes include:
 
-soccerdata <- read_csv("./data/soccer.csv")
-dim(soccerdata)
-head(soccerdata)
-```
+1. logical
+2. character
+3. double / numeric  (with decimals)
+4. integer (whole numbers, no decimals)
 
-#### select
+##### Properties of vectors
+
++ Type, typeof(), what it is.
++ Length, length(), how many elements it contains.
++ Attributes, attributes(), additional arbitrary metadata.
+
+##### 2. Vector creation
+
+Create a vector using ```c()```
 
 ```{r}
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points)
-```
+log_vec <- c(TRUE,FALSE,TRUE,T,F) ## logical
+typeof(log_vec)
+length(log_vec)
+attributes(log_vec)
 
-#### filter
-
-```{r}
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    filter(now_cost > 5 & total_points > 30, team_name == "Arsenal")
-```
-
-#### group_by and summarise
-
-```{r}
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    group_by(team_name) %>%
-    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
-
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    group_by(team_name, type_name) %>%
-    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
-```
-
-#### arrange
-
-```{r}
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    group_by(team_name, type_name) %>%
-    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
-    arrange(desc(team_name))
-```
-
-#### mutate and transmute
-
-```{r}
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    group_by(team_name) %>%
-    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
-    mutate(league.average = sum(teamcost)/n(),
-           cost_diff = league.average - teamcost)
-
-soccerdata %>%
-    select(type_name, team_name, now_cost, total_points) %>%
-    group_by(team_name) %>%
-    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
-    transmute(team_name = team_name, 
-              league.average = sum(teamcost)/n(),
-           cost_diff = league.average - teamcost)
+char_vec <- c("hello","world!") ## character
     
+num_vec <- c(1L,3L,5L) ## integer
+
+dbl_vec <- c(1.5, 3.1416) ## double
+
 ```
 
-#### sample_n() and sample_frac()
+##### Adding Vector elements
 
 ```{r}
-data.df <- data.frame(y1=rnorm(100),x1=rnorm(100),x2=rnorm(100))
-head(data.df)
+num_vec[4] <- 7L ## You can only do this if you know the dimensions and if you know the last used index
+num_vec
 
-dim(data.df)
-
-sample_n(data.df, 70)
-sample_frac(data.df, .6)
+num_vec <- c(num_vec,9)
+num_vec
 ```
 
+##### Indexing a vector
+
++ vector[index]
+
+Note:
+
++ Square brackets ```[]```
++ Index: numerical, combination or named position
+
+```{r}
+name_vec <- c("patriots", "packers", "broncos", "49ers")
+
+name_vec[0] ## null vector
+
+name_vec[1]
+
+name_vec[5] ## NA
+
+name_vec[c(1,3)] ## including specific positions
+
+name_vec[-1] ## excluding a vector position
+
+name_vec[-c(2,4)] ## excluding specific positions
+
+## named positions
+names(name_vec) <- c("new england", "green bay", "denver", "sf")
+
+name_vec["green bay"]
+
+
+```
+
+##### Types and tests
+
++ typeof()
++ _is.type()_, where type = character, logical, integer, double
+
+##### Type Coercion
+
+```{r}
+
+num_vec <- c(1L,3L,5L) ## create the vector
+
+is.integer(num_vec)
+
+is.double(num_vec)
+
+num_vec <- c(num_vec, 6.5) ## add a new element
+
+is.integer(num_vec)
+
+is.double(num_vec)
+
+```
+
+##### Useful functions
+
++ is.na
++ complete.cases
++ rep
++ seq
++ seq_along
+
+##### Operations
+
+Arithmetic
+
++ Addition
++ Subtraction
++ Multiplication
++ Division
++ Modulo
+
+---
+
+## Matrices
+
+##### Properties
+
++ Dimensionality, dim(), number of rows and columns
+
+##### Creating a matrix
+
+```{r}
+mat1 <- matrix(1:12)
+mat1
+attributes(mat1) ## note attributes
+dim(mat1)
+
+mat2 <- matrix(1:12, nrow = 4)
+mat2
+
+dim(mat2)
+
+mat3 <- matrix(1:12, ncol = 4)
+mat3
+
+mat4 <- matrix(1:12, ncol = 4, byrow = TRUE)
+mat4
+
+mat5 <- matrix(1:12, ncol = 4, nrow = 5)
+mat5
+
+```
+
+##### Indexing a matrix
+
+**mat_variable[row, column]**
+
+```{r}
+
+mat4
+mat4[2,1]
+
+attributes(mat4[2,1]) ## Q: Why is this NULL?
+
+mat4[2,]
+
+mat4[,1]
+
+mat4[,-1]
+
+```
+
+##### Adding / Removing Matrix Rows and Columns
+
+Technically, matrices are of fixed length and dimensions, so we cannot add or delete rows or columns. However, matrices can be reassigned, and thus we can achieve the same effect as if we had directly done additions or deletions.
+
+This is done using ```rbind()``` **(to append rows)** and ```cbind()``` **to append columns**.
+
+```{r}
+mat1 <- matrix(1:20, nrow=5)
+mat1
+
+rbind(mat1, c(40:43))
+
+mat1 <- rbind(mat1, c(40:43))
+mat1
+
+mat2 <- matrix(1:9, nrow=3, byrow = TRUE)
+mat2
+
+cbind(mat2, matrix(100:102, ncol=1))
+
+mat2 <- cbind(mat2, matrix(100:102, ncol=1))
+mat2
+
+```
+
+##### Matrix operations (matrix multiplication)
+
+__Use %*% operator__
+
+```{r}
+mat1 <- matrix(1:4,nrow = 2)
+mat1
+
+mat2 <- matrix(100:103, nrow = 2)
+mat2
+
+mat1 %*% mat2
+```
+
+---
+
+## Data Frames
+
+##### Creating a dataframe
+
++ ```data.frame()```
++ **named vectors**
+
+
+```{r}
+df_league <- data.frame(city=c("green bay", "new england", "seattle", "chicago"), 
+                        teams=c("packers", "pats", "seahawks", "bears"))
+df_league
+
+attributes(df_league)
+```
+
+##### Properties
+
++ ```names()``` / ```colnames()```
++ ```rownames()```
++ ```length()```
++ ```nrow()```
++ ```ncol()```
+
+```{r}
+length(df_league)
+ncol(df_league)
+
+length(df_league[,1])
+
+nrow(df_league)
+
+names(df_league)
+
+rownames(df_league)
+```
+
+##### Combining data frames
+
+```{r}
+df_league
+
+df_league <- data.frame(df_league, exp_standing=c(5:8))
+
+names(df_league)
+```
+
+##### Indexing a data frame
+
+**dataframe_variable[row,col]**
+
+```{r}
+df_league
+
+df_league[,1]
+
+df_league[1,]
+
+df_league[-1,]
+
+df_league[,-1]
+```
+
+
+---
+
+## Problem Sets
+
+1. Generate 1000 normally distributed random numbers and store it in vector _v1_
++ Select the first 100 numbers and plot them
++ Plot the top 20th percentile (may not work since they don't know filtering)
