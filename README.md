@@ -23,6 +23,7 @@
 + RStudio IDE features
 + Customizing the RStudio Environment
 + Creating and Managing a RStudio Project
++ Data Analysis Value Chain
 + Installing and Loading ```packages```
 
 ---
