@@ -1,0 +1,102 @@
+---
+title: "Week 5 - Data Munging in R - Part II"
+author: "Naveen Venkataraman"
+date: "October 31, 2015"
+output: html_document
+---
+
+## dplyr
+
+Functions
+
++ select(): select variables
++ filter(): filter by criteria
+    + also see slice()
++ group_by(): groups by categorical levels
++ arrange(): order data
++ mutate(): 
+    + also see transmute()
++ summarise(): summary output
++ sample_n() and sample_frac()
++ join(): joining two dataframes (similar to joins in SQL)
+
+```{r}
+library(readr)
+library(dplyr)
+
+soccerdata <- read_csv("./data/soccer.csv")
+dim(soccerdata)
+head(soccerdata)
+```
+
+#### select
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points)
+```
+
+#### filter
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    filter(now_cost > 5 & total_points > 30, team_name == "Arsenal")
+```
+
+#### group_by and summarise
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+```
+
+#### arrange
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    arrange(desc(team_name))
+```
+
+#### mutate and transmute
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    mutate(league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    transmute(team_name = team_name, 
+              league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+    
+```
+
+#### sample_n() and sample_frac()
+
+```{r}
+data.df <- data.frame(y1=rnorm(100),x1=rnorm(100),x2=rnorm(100))
+head(data.df)
+
+dim(data.df)
+
+sample_n(data.df, 70)
+sample_frac(data.df, .6)
+```
+
