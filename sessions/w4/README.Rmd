@@ -123,12 +123,5 @@ fxrates <- fromJSON(url)
 
 tfxrates <- t(t(fxrates))
 fxrates.df <- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
-
-fxrates.df <- fxrates.df %>% 
-                    separate(xchg, c("From","To"))
-
-fxrates.wide <- fxrates.df %>% 
-                    spread(To, rate)
-
-fxrates.wide
+fxrates.df
 ```
