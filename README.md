@@ -19,7 +19,6 @@
 
 **Topics Covered**
 
-+ Installing R and RStudio
 + RStudio IDE features
 + Customizing the RStudio Environment
 + Creating and Managing a RStudio Project
@@ -41,9 +40,12 @@
 
 **Topics Covered**
 
-+ Vectors
-+ Matrices
-+ Data frames
++ Data Structures: Vectors, Lists, Matrices, Data frames
++ Creation
++ Inspection
++ Adding and Removing
++ Indexing
++ Type casting and coercion
 
 ---
 

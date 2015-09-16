@@ -93,13 +93,13 @@ img {
 <tbody>
 <tr class="odd">
 <td align="right">1d</td>
-<td align="right"><strong>Atomic Vector</strong></td>
+<td align="right">Atomic Vector</td>
 <td align="right">List</td>
 </tr>
 <tr class="even">
 <td align="right">2d</td>
-<td align="right"><strong>Matrix</strong></td>
-<td align="right"><strong>Data Frame</strong></td>
+<td align="right">Matrix</td>
+<td align="right">Data Frame</td>
 </tr>
 <tr class="odd">
 <td align="right">nd</td>
@@ -124,136 +124,22 @@ img {
 <hr />
 </div>
 </div>
-<div id="atomic-vector-henceforth-refered-to-as-vector" class="section level2">
-<h2>Atomic Vector (henceforth refered to as <code>vector</code>)</h2>
-<p>Simplest data type in R. Variable types are called <code>modes</code>.</p>
-<p>Note: R does not have a <code>scalar</code> data type. Scalars in R are vectors of length = 1.</p>
-<p>Modes include:</p>
-<ol style="list-style-type: decimal">
-<li>logical</li>
-<li>character</li>
-<li>double / numeric (with decimals)</li>
-<li>integer (whole numbers, no decimals)</li>
-</ol>
-<div id="properties-of-vectors" class="section level5">
-<h5>Properties of vectors</h5>
-<ul>
-<li>Type, typeof(), what it is.</li>
-<li>Length, length(), how many elements it contains.</li>
-<li>Attributes, attributes(), additional arbitrary metadata.</li>
-</ul>
-</div>
-<div id="vector-creation" class="section level5">
-<h5>2. Vector creation</h5>
-<p>Create a vector using <code>c()</code></p>
-<pre class="r"><code>log_vec &lt;- c(TRUE,FALSE,TRUE,T,F) ## logical
-typeof(log_vec)</code></pre>
-<pre><code>## [1] &quot;logical&quot;</code></pre>
-<pre class="r"><code>length(log_vec)</code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>attributes(log_vec)</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>char_vec &lt;- c(&quot;hello&quot;,&quot;world!&quot;) ## character
+<div id="creation" class="section level2">
+<h2>1. Creation</h2>
+<div id="a.-vector-aka-atomic-vector" class="section level3">
+<h3>A. Vector aka <em>atomic vector</em></h3>
+<p>c(values)</p>
+<pre class="r"><code>log_vec &lt;- c(TRUE,FALSE,T,F) ## logical
+
+char_vec &lt;- c(&quot;hello&quot;,&quot;world!&quot;) ## character
     
-num_vec &lt;- c(1L,3L,5L) ## integer
+num_vec &lt;- c(1L,3L,5L,7L) ## integer
 
-dbl_vec &lt;- c(1.5, 3.1416) ## double</code></pre>
+dbl_vec &lt;- c(1.5, 3.1416) ## double or floating point</code></pre>
 </div>
-<div id="adding-vector-elements" class="section level5">
-<h5>Adding Vector elements</h5>
-<pre class="r"><code>num_vec[4] &lt;- 7L ## You can only do this if you know the dimensions and if you know the last used index
-num_vec</code></pre>
-<pre><code>## [1] 1 3 5 7</code></pre>
-<pre class="r"><code>num_vec &lt;- c(num_vec,9)
-num_vec</code></pre>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-</div>
-<div id="indexing-a-vector" class="section level5">
-<h5>Indexing a vector</h5>
-<ul>
-<li>vector[index]</li>
-</ul>
-<p>Note:</p>
-<ul>
-<li>Square brackets <code>[]</code></li>
-<li>Index: numerical, combination or named position</li>
-</ul>
-<pre class="r"><code>name_vec &lt;- c(&quot;patriots&quot;, &quot;packers&quot;, &quot;broncos&quot;, &quot;49ers&quot;)
-
-name_vec[0] ## null vector</code></pre>
-<pre><code>## character(0)</code></pre>
-<pre class="r"><code>name_vec[1]</code></pre>
-<pre><code>## [1] &quot;patriots&quot;</code></pre>
-<pre class="r"><code>name_vec[5] ## NA</code></pre>
-<pre><code>## [1] NA</code></pre>
-<pre class="r"><code>name_vec[c(1,3)] ## including specific positions</code></pre>
-<pre><code>## [1] &quot;patriots&quot; &quot;broncos&quot;</code></pre>
-<pre class="r"><code>name_vec[-1] ## excluding a vector position</code></pre>
-<pre><code>## [1] &quot;packers&quot; &quot;broncos&quot; &quot;49ers&quot;</code></pre>
-<pre class="r"><code>name_vec[-c(2,4)] ## excluding specific positions</code></pre>
-<pre><code>## [1] &quot;patriots&quot; &quot;broncos&quot;</code></pre>
-<pre class="r"><code>## named positions
-names(name_vec) &lt;- c(&quot;new england&quot;, &quot;green bay&quot;, &quot;denver&quot;, &quot;sf&quot;)
-
-name_vec[&quot;green bay&quot;]</code></pre>
-<pre><code>## green bay 
-## &quot;packers&quot;</code></pre>
-</div>
-<div id="types-and-tests" class="section level5">
-<h5>Types and tests</h5>
-<ul>
-<li>typeof()</li>
-<li><em>is.type()</em>, where type = character, logical, integer, double</li>
-</ul>
-</div>
-<div id="type-coercion" class="section level5">
-<h5>Type Coercion</h5>
-<pre class="r"><code>num_vec &lt;- c(1L,3L,5L) ## create the vector
-
-is.integer(num_vec)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>is.double(num_vec)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>num_vec &lt;- c(num_vec, 6.5) ## add a new element
-
-is.integer(num_vec)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>is.double(num_vec)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-</div>
-<div id="useful-functions" class="section level5">
-<h5>Useful functions</h5>
-<ul>
-<li>is.na</li>
-<li>complete.cases</li>
-<li>rep</li>
-<li>seq</li>
-<li>seq_along</li>
-</ul>
-</div>
-<div id="operations" class="section level5">
-<h5>Operations</h5>
-<p>Arithmetic</p>
-<ul>
-<li>Addition</li>
-<li>Subtraction</li>
-<li>Multiplication</li>
-<li>Division</li>
-<li>Modulo</li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="matrices" class="section level2">
-<h2>Matrices</h2>
-<div id="properties" class="section level5">
-<h5>Properties</h5>
-<ul>
-<li>Dimensionality, dim(), number of rows and columns</li>
-</ul>
-</div>
-<div id="creating-a-matrix" class="section level5">
-<h5>Creating a matrix</h5>
+<div id="b.-matrix" class="section level3">
+<h3>B. Matrix</h3>
+<p>matrix(values, nrow = m, ncol = n)</p>
 <pre class="r"><code>mat1 &lt;- matrix(1:12)
 mat1</code></pre>
 <pre><code>##       [,1]
@@ -269,11 +155,6 @@ mat1</code></pre>
 ## [10,]   10
 ## [11,]   11
 ## [12,]   12</code></pre>
-<pre class="r"><code>attributes(mat1) ## note attributes</code></pre>
-<pre><code>## $dim
-## [1] 12  1</code></pre>
-<pre class="r"><code>dim(mat1)</code></pre>
-<pre><code>## [1] 12  1</code></pre>
 <pre class="r"><code>mat2 &lt;- matrix(1:12, nrow = 4)
 mat2</code></pre>
 <pre><code>##      [,1] [,2] [,3]
@@ -281,8 +162,6 @@ mat2</code></pre>
 ## [2,]    2    6   10
 ## [3,]    3    7   11
 ## [4,]    4    8   12</code></pre>
-<pre class="r"><code>dim(mat2)</code></pre>
-<pre><code>## [1] 4 3</code></pre>
 <pre class="r"><code>mat3 &lt;- matrix(1:12, ncol = 4)
 mat3</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4]
@@ -306,112 +185,44 @@ mat4</code></pre>
 ## [4,]    4    9    2    7
 ## [5,]    5   10    3    8</code></pre>
 </div>
-<div id="indexing-a-matrix" class="section level5">
-<h5>Indexing a matrix</h5>
-<p><strong>mat_variable[row, column]</strong></p>
-<pre class="r"><code>mat4</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    2    3    4
-## [2,]    5    6    7    8
-## [3,]    9   10   11   12</code></pre>
-<pre class="r"><code>mat4[2,1]</code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>attributes(mat4[2,1]) ## Q: Why is this NULL?</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>mat4[2,]</code></pre>
-<pre><code>## [1] 5 6 7 8</code></pre>
-<pre class="r"><code>mat4[,1]</code></pre>
-<pre><code>## [1] 1 5 9</code></pre>
-<pre class="r"><code>mat4[,-1]</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    2    3    4
-## [2,]    6    7    8
-## [3,]   10   11   12</code></pre>
-</div>
-<div id="adding-removing-matrix-rows-and-columns" class="section level5">
-<h5>Adding / Removing Matrix Rows and Columns</h5>
-<p>Technically, matrices are of fixed length and dimensions, so we cannot add or delete rows or columns. However, matrices can be reassigned, and thus we can achieve the same effect as if we had directly done additions or deletions.</p>
-<p>This is done using <code>rbind()</code> <strong>(to append rows)</strong> and <code>cbind()</code> <strong>to append columns</strong>.</p>
-<pre class="r"><code>mat1 &lt;- matrix(1:20, nrow=5)
-mat1</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    6   11   16
-## [2,]    2    7   12   17
-## [3,]    3    8   13   18
-## [4,]    4    9   14   19
-## [5,]    5   10   15   20</code></pre>
-<pre class="r"><code>rbind(mat1, c(40:43))</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    6   11   16
-## [2,]    2    7   12   17
-## [3,]    3    8   13   18
-## [4,]    4    9   14   19
-## [5,]    5   10   15   20
-## [6,]   40   41   42   43</code></pre>
-<pre class="r"><code>mat1 &lt;- rbind(mat1, c(40:43))
-mat1</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    6   11   16
-## [2,]    2    7   12   17
-## [3,]    3    8   13   18
-## [4,]    4    9   14   19
-## [5,]    5   10   15   20
-## [6,]   40   41   42   43</code></pre>
-<pre class="r"><code>mat2 &lt;- matrix(1:9, nrow=3, byrow = TRUE)
-mat2</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    4    5    6
-## [3,]    7    8    9</code></pre>
-<pre class="r"><code>cbind(mat2, matrix(100:102, ncol=1))</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    2    3  100
-## [2,]    4    5    6  101
-## [3,]    7    8    9  102</code></pre>
-<pre class="r"><code>mat2 &lt;- cbind(mat2, matrix(100:102, ncol=1))
-mat2</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    2    3  100
-## [2,]    4    5    6  101
-## [3,]    7    8    9  102</code></pre>
-</div>
-<div id="matrix-operations-matrix-multiplication" class="section level5">
-<h5>Matrix operations (matrix multiplication)</h5>
-<p>__Use %*% operator__</p>
-<pre class="r"><code>mat1 &lt;- matrix(1:4,nrow = 2)
-mat1</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    1    3
-## [2,]    2    4</code></pre>
-<pre class="r"><code>mat2 &lt;- matrix(100:103, nrow = 2)
-mat2</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]  100  102
-## [2,]  101  103</code></pre>
-<pre class="r"><code>mat1 %*% mat2</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]  403  411
-## [2,]  604  616</code></pre>
-<hr />
-</div>
-</div>
-<div id="data-frames" class="section level2">
-<h2>Data Frames</h2>
-<div id="creating-a-dataframe" class="section level5">
-<h5>Creating a dataframe</h5>
-<ul>
-<li><code>data.frame()</code></li>
-<li><strong>named vectors</strong></li>
-</ul>
-<pre class="r"><code>df_league &lt;- data.frame(city=c(&quot;green bay&quot;, &quot;new england&quot;, &quot;seattle&quot;, &quot;chicago&quot;), 
-                        teams=c(&quot;packers&quot;, &quot;pats&quot;, &quot;seahawks&quot;, &quot;bears&quot;))
+<div id="c.-dataframe" class="section level3">
+<h3>C. Dataframe</h3>
+<p>data.frame(colname1 = vector, colname2 = vector)</p>
+<pre class="r"><code>df_league &lt;- data.frame(
+    city=c(&quot;green bay&quot;, &quot;new england&quot;, &quot;seattle&quot;, &quot;chicago&quot;),
+    teams=c(&quot;packers&quot;, &quot;pats&quot;, &quot;seahawks&quot;, &quot;bears&quot;))
 df_league</code></pre>
 <pre><code>##          city    teams
 ## 1   green bay  packers
 ## 2 new england     pats
 ## 3     seattle seahawks
 ## 4     chicago    bears</code></pre>
-<pre class="r"><code>attributes(df_league)</code></pre>
+</div>
+<div id="d.-lists-aka-recursive-vectors" class="section level3">
+<h3>D. Lists aka <em>recursive vectors</em></h3>
+<pre class="r"><code>qb_stats &lt;- list(name=c(&quot;Brett Favre&quot;, &quot;Peyton Manning&quot;, 
+                        &quot;Dan Marino&quot;, &quot;Drew Brees&quot;, &quot;Tom Brady&quot;),
+                yards=c(71838, 69866, 61361, 56388, 53546))
+qb_stats</code></pre>
+<pre><code>## $name
+## [1] &quot;Brett Favre&quot;    &quot;Peyton Manning&quot; &quot;Dan Marino&quot;     &quot;Drew Brees&quot;    
+## [5] &quot;Tom Brady&quot;     
+## 
+## $yards
+## [1] 71838 69866 61361 56388 53546</code></pre>
+<hr />
+</div>
+</div>
+<div id="inspection" class="section level2">
+<h2>2. Inspection</h2>
+<div id="a.-metadata-attributes" class="section level4">
+<h4>A. Metadata: <code>attributes</code></h4>
+<pre class="r"><code>attributes(log_vec) # vector</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>attributes(mat5) # matrix</code></pre>
+<pre><code>## $dim
+## [1] 5 4</code></pre>
+<pre class="r"><code>attributes(df_league) # dataframe</code></pre>
 <pre><code>## $names
 ## [1] &quot;city&quot;  &quot;teams&quot;
 ## 
@@ -420,80 +231,530 @@ df_league</code></pre>
 ## 
 ## $class
 ## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>attributes(qb_stats) # list</code></pre>
+<pre><code>## $names
+## [1] &quot;name&quot;  &quot;yards&quot;</code></pre>
 </div>
-<div id="properties-1" class="section level5">
-<h5>Properties</h5>
-<ul>
-<li><code>names()</code> / <code>colnames()</code></li>
-<li><code>rownames()</code></li>
-<li><code>length()</code></li>
-<li><code>nrow()</code></li>
-<li><code>ncol()</code></li>
-</ul>
-<pre class="r"><code>length(df_league)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>ncol(df_league)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>length(df_league[,1])</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>nrow(df_league)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>names(df_league)</code></pre>
+<div id="b.-structure-and-summary-str-and-summary" class="section level4">
+<h4>B. Structure and summary: <code>str</code> and <code>summary</code></h4>
+<pre class="r"><code>str(num_vec)</code></pre>
+<pre><code>##  int [1:4] 1 3 5 7</code></pre>
+<pre class="r"><code>str(mat2)</code></pre>
+<pre><code>##  int [1:4, 1:3] 1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<pre class="r"><code>str(df_league)</code></pre>
+<pre><code>## 'data.frame':    4 obs. of  2 variables:
+##  $ city : Factor w/ 4 levels &quot;chicago&quot;,&quot;green bay&quot;,..: 2 3 4 1
+##  $ teams: Factor w/ 4 levels &quot;bears&quot;,&quot;packers&quot;,..: 2 3 4 1</code></pre>
+<pre class="r"><code>str(qb_stats)</code></pre>
+<pre><code>## List of 2
+##  $ name : chr [1:5] &quot;Brett Favre&quot; &quot;Peyton Manning&quot; &quot;Dan Marino&quot; &quot;Drew Brees&quot; ...
+##  $ yards: num [1:5] 71838 69866 61361 56388 53546</code></pre>
+</div>
+<div id="c.-names-names-rownames-colnames" class="section level4">
+<h4>C. Names: <code>names</code>, <code>rownames</code>, <code>colnames</code></h4>
+<pre class="r"><code>## vector
+names(num_vec)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>rownames(num_vec)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>colnames(num_vec)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>## list
+
+names(qb_stats)</code></pre>
+<pre><code>## [1] &quot;name&quot;  &quot;yards&quot;</code></pre>
+<pre class="r"><code>rownames(qb_stats)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>colnames(qb_stats)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>## matrix
+
+names(mat3)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>rownames(mat3)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>colnames(mat3)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>## dataframe
+
+names(df_league)</code></pre>
 <pre><code>## [1] &quot;city&quot;  &quot;teams&quot;</code></pre>
 <pre class="r"><code>rownames(df_league)</code></pre>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
+<pre class="r"><code>colnames(df_league)</code></pre>
+<pre><code>## [1] &quot;city&quot;  &quot;teams&quot;</code></pre>
 </div>
-<div id="combining-data-frames" class="section level5">
-<h5>Combining data frames</h5>
+<div id="d.-size-and-dimensionality-length-and-dim" class="section level4">
+<h4>D. Size and Dimensionality: <code>length</code> and <code>dim</code></h4>
+<pre class="r"><code>length(num_vec)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>length(mat4)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>length(qb_stats)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>length(df_league)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>mat1</code></pre>
+<pre><code>##       [,1]
+##  [1,]    1
+##  [2,]    2
+##  [3,]    3
+##  [4,]    4
+##  [5,]    5
+##  [6,]    6
+##  [7,]    7
+##  [8,]    8
+##  [9,]    9
+## [10,]   10
+## [11,]   11
+## [12,]   12</code></pre>
+<pre class="r"><code>dim(mat1)</code></pre>
+<pre><code>## [1] 12  1</code></pre>
+<pre class="r"><code>mat3</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12</code></pre>
+<pre class="r"><code>dim(mat3)</code></pre>
+<pre><code>## [1] 3 4</code></pre>
 <pre class="r"><code>df_league</code></pre>
 <pre><code>##          city    teams
 ## 1   green bay  packers
 ## 2 new england     pats
 ## 3     seattle seahawks
 ## 4     chicago    bears</code></pre>
-<pre class="r"><code>df_league &lt;- data.frame(df_league, exp_standing=c(5:8))
-
-names(df_league)</code></pre>
-<pre><code>## [1] &quot;city&quot;         &quot;teams&quot;        &quot;exp_standing&quot;</code></pre>
+<pre class="r"><code>dim(df_league)</code></pre>
+<pre><code>## [1] 4 2</code></pre>
 </div>
-<div id="indexing-a-data-frame" class="section level5">
-<h5>Indexing a data frame</h5>
-<p><strong>dataframe_variable[row,col]</strong></p>
-<pre class="r"><code>df_league</code></pre>
-<pre><code>##          city    teams exp_standing
-## 1   green bay  packers            5
-## 2 new england     pats            6
-## 3     seattle seahawks            7
-## 4     chicago    bears            8</code></pre>
-<pre class="r"><code>df_league[,1]</code></pre>
-<pre><code>## [1] green bay   new england seattle     chicago    
-## Levels: chicago green bay new england seattle</code></pre>
-<pre class="r"><code>df_league[1,]</code></pre>
-<pre><code>##        city   teams exp_standing
-## 1 green bay packers            5</code></pre>
-<pre class="r"><code>df_league[-1,]</code></pre>
-<pre><code>##          city    teams exp_standing
-## 2 new england     pats            6
-## 3     seattle seahawks            7
-## 4     chicago    bears            8</code></pre>
-<pre class="r"><code>df_league[,-1]</code></pre>
-<pre><code>##      teams exp_standing
-## 1  packers            5
-## 2     pats            6
-## 3 seahawks            7
-## 4    bears            8</code></pre>
+<div id="e.-type-of-data-class-and-typeof" class="section level4">
+<h4>E. Type of data: <code>class</code> and <code>typeof</code></h4>
+<pre class="r"><code>## class: enclosing structure information
+
+class(df_league)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(qb_stats)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>class(num_vec)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>class(dbl_vec)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>class(log_vec)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>class(char_vec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>class(mat5)</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre class="r"><code>## typeof: data inside
+
+typeof(num_vec)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>typeof(dbl_vec)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(mat5)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>typeof(qb_stats)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>typeof(df_league)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+</div>
+<div id="f.-quick-view-head" class="section level4">
+<h4>F. Quick view: <code>head</code></h4>
+<pre class="r"><code>head(log_vec)</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>head(df_league)</code></pre>
+<pre><code>##          city    teams
+## 1   green bay  packers
+## 2 new england     pats
+## 3     seattle seahawks
+## 4     chicago    bears</code></pre>
+<pre class="r"><code>head(qb_stats)</code></pre>
+<pre><code>## $name
+## [1] &quot;Brett Favre&quot;    &quot;Peyton Manning&quot; &quot;Dan Marino&quot;     &quot;Drew Brees&quot;    
+## [5] &quot;Tom Brady&quot;     
+## 
+## $yards
+## [1] 71838 69866 61361 56388 53546</code></pre>
+<pre class="r"><code>mat &lt;- cbind(norm=rnorm(4000),unif=runif(4000))
+dim(mat)</code></pre>
+<pre><code>## [1] 4000    2</code></pre>
+<pre class="r"><code>head(mat)</code></pre>
+<pre><code>##            norm      unif
+## [1,]  0.6761485 0.2932644
+## [2,] -1.2493692 0.0667518
+## [3,]  0.0666754 0.7670903
+## [4,] -1.4958412 0.2592410
+## [5,] -0.3933250 0.6055850
+## [6,] -1.9713354 0.4975963</code></pre>
+<pre class="r"><code>head(mat, n = 10)</code></pre>
+<pre><code>##             norm      unif
+##  [1,]  0.6761485 0.2932644
+##  [2,] -1.2493692 0.0667518
+##  [3,]  0.0666754 0.7670903
+##  [4,] -1.4958412 0.2592410
+##  [5,] -0.3933250 0.6055850
+##  [6,] -1.9713354 0.4975963
+##  [7,]  0.6098275 0.6627899
+##  [8,] -0.8615586 0.2525621
+##  [9,]  1.4341270 0.1232473
+## [10,] -0.2829043 0.9572271</code></pre>
 <hr />
 </div>
 </div>
-<div id="problem-sets" class="section level2">
-<h2>Problem Sets</h2>
-<ol style="list-style-type: decimal">
-<li>Generate 1000 normally distributed random numbers and store it in vector <em>v1</em></li>
-</ol>
-<ul>
-<li>Select the first 100 numbers and plot them</li>
-<li>Plot the top 20th percentile (may not work since they don’t know filtering)</li>
-</ul>
+<div id="adding-values-columns-and-rows" class="section level2">
+<h2>3. Adding values, columns and rows</h2>
+<div id="a.-vector" class="section level4">
+<h4>A. Vector</h4>
+<pre class="r"><code>v1 &lt;- 1:10
+v1</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>v1 &lt;- c(v1, 100) ## using c to create a new vector
+v1</code></pre>
+<pre><code>##  [1]   1   2   3   4   5   6   7   8   9  10 100</code></pre>
+</div>
+<div id="b.-matrix-1" class="section level4">
+<h4>B. Matrix</h4>
+<pre class="r"><code>m1 &lt;- matrix(1:20, nrow = 5)
+m1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20</code></pre>
+<pre class="r"><code>## adding a column
+cbind(m1, c(1:5)) # cbind</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    6   11   16    1
+## [2,]    2    7   12   17    2
+## [3,]    3    8   13   18    3
+## [4,]    4    9   14   19    4
+## [5,]    5   10   15   20    5</code></pre>
+<pre class="r"><code>## adding a row
+rbind(m1, c(1:4)) #rbind</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+## [6,]    1    2    3    4</code></pre>
+</div>
+<div id="c.-dataframes" class="section level4">
+<h4>C. Dataframes</h4>
+<pre class="r"><code>df1 &lt;- data.frame(norm=rnorm(10),
+                  unif=runif(10),
+                  alpha=letters[1:10])
+
+df1</code></pre>
+<pre><code>##          norm       unif alpha
+## 1  -0.4667840 0.10324242     a
+## 2  -2.0358303 0.01238887     b
+## 3   0.6047691 0.50266351     c
+## 4  -1.0393698 0.93442365     d
+## 5   0.1614518 0.57711425     e
+## 6   1.5470642 0.91904786     f
+## 7  -0.4592813 0.69639780     g
+## 8  -0.2825655 0.45935728     h
+## 9  -1.6661470 0.99483777     i
+## 10  1.2640747 0.87877692     j</code></pre>
+<pre class="r"><code>## adding a column
+
+## method 1: creating and merging data frames
+df2 &lt;- data.frame(df1,
+           newcol=sample(c(T,F), size = 10, replace = T))
+class(df2)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>## using cbind
+df3 &lt;- cbind(
+    df1, 
+            newcol=sample(c(T,F), size = 10, replace = T)
+)
+class(df3)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>## adding a row
+
+df4 &lt;- df3[4,1:3]
+df4</code></pre>
+<pre><code>##       norm      unif alpha
+## 4 -1.03937 0.9344236     d</code></pre>
+<pre class="r"><code>rbind(df1,df4)</code></pre>
+<pre><code>##          norm       unif alpha
+## 1  -0.4667840 0.10324242     a
+## 2  -2.0358303 0.01238887     b
+## 3   0.6047691 0.50266351     c
+## 4  -1.0393698 0.93442365     d
+## 5   0.1614518 0.57711425     e
+## 6   1.5470642 0.91904786     f
+## 7  -0.4592813 0.69639780     g
+## 8  -0.2825655 0.45935728     h
+## 9  -1.6661470 0.99483777     i
+## 10  1.2640747 0.87877692     j
+## 41 -1.0393698 0.93442365     d</code></pre>
+</div>
+<div id="d.-lists" class="section level4">
+<h4>D. Lists</h4>
+<pre class="r"><code>c(list(1:10),list(sample(c(T,F), size = 100, replace = T)))</code></pre>
+<pre><code>## [[1]]
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## [[2]]
+##   [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE
+##  [12] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE
+##  [23]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [34]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [45]  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
+##  [56]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
+##  [67] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE
+##  [78] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+##  [89]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+## [100] FALSE</code></pre>
+<hr />
+</div>
+</div>
+<div id="indexing-subsetting" class="section level2">
+<h2>4. Indexing / Subsetting</h2>
+<div id="a.-vector-1" class="section level4">
+<h4>A. Vector</h4>
+<pre class="r"><code>v1 &lt;- 100:150
+v1</code></pre>
+<pre><code>##  [1] 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116
+## [18] 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133
+## [35] 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150</code></pre>
+<pre class="r"><code>v1[5]</code></pre>
+<pre><code>## [1] 104</code></pre>
+<pre class="r"><code>v1[3:5]</code></pre>
+<pre><code>## [1] 102 103 104</code></pre>
+<pre class="r"><code>v1[c(20,37,45)]</code></pre>
+<pre><code>## [1] 119 136 144</code></pre>
+<pre class="r"><code>v1[-c(1:25)]</code></pre>
+<pre><code>##  [1] 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141
+## [18] 142 143 144 145 146 147 148 149 150</code></pre>
+</div>
+<div id="b.-matrix-2" class="section level4">
+<h4>B. Matrix</h4>
+<pre class="r"><code>m1 &lt;- matrix(1:20, nrow = 5)
+m1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20</code></pre>
+<pre class="r"><code>m1[5,4] ## individual element</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>m1[5,] ## include entire row</code></pre>
+<pre><code>## [1]  5 10 15 20</code></pre>
+<pre class="r"><code>m1[,4] ## include entire column</code></pre>
+<pre><code>## [1] 16 17 18 19 20</code></pre>
+<pre class="r"><code>m1[-3,] ## exclude row</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    4    9   14   19
+## [4,]    5   10   15   20</code></pre>
+<pre class="r"><code>m1[-c(1,5),] ## exlude groups of rows</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2    7   12   17
+## [2,]    3    8   13   18
+## [3,]    4    9   14   19</code></pre>
+<pre class="r"><code>m1[,-1] ## exclude column</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    6   11   16
+## [2,]    7   12   17
+## [3,]    8   13   18
+## [4,]    9   14   19
+## [5,]   10   15   20</code></pre>
+<pre class="r"><code>m1[,-c(1,2)] ## exclude groups of columns</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   11   16
+## [2,]   12   17
+## [3,]   13   18
+## [4,]   14   19
+## [5,]   15   20</code></pre>
+</div>
+<div id="c.-dataframe-1" class="section level4">
+<h4>C. Dataframe</h4>
+<p>Dataframes have same indexing methods as matrices. In addition,</p>
+<pre class="r"><code>df1</code></pre>
+<pre><code>##          norm       unif alpha
+## 1  -0.4667840 0.10324242     a
+## 2  -2.0358303 0.01238887     b
+## 3   0.6047691 0.50266351     c
+## 4  -1.0393698 0.93442365     d
+## 5   0.1614518 0.57711425     e
+## 6   1.5470642 0.91904786     f
+## 7  -0.4592813 0.69639780     g
+## 8  -0.2825655 0.45935728     h
+## 9  -1.6661470 0.99483777     i
+## 10  1.2640747 0.87877692     j</code></pre>
+<pre class="r"><code>df1$norm</code></pre>
+<pre><code>##  [1] -0.4667840 -2.0358303  0.6047691 -1.0393698  0.1614518  1.5470642
+##  [7] -0.4592813 -0.2825655 -1.6661470  1.2640747</code></pre>
+<pre class="r"><code>df1$unif[5]</code></pre>
+<pre><code>## [1] 0.5771142</code></pre>
+<pre class="r"><code>df1$alpha[-c(1:5)]</code></pre>
+<pre><code>## [1] f g h i j
+## Levels: a b c d e f g h i j</code></pre>
+</div>
+<div id="d.-lists-1" class="section level4">
+<h4>D. Lists</h4>
+<p>Tricky ones.</p>
+<p><strong>Pay careful attention to <code>[ ]</code> vs <code>[[ ]]</code></strong></p>
+<pre class="r"><code>l &lt;- list(
+            data.frame(norm=rnorm(10),unif=runif(10)),
+            c(1:5),
+            matrix(1:20, nrow = 10)
+        )
+l</code></pre>
+<pre><code>## [[1]]
+##           norm       unif
+## 1   0.51158460 0.58021460
+## 2   0.17773040 0.02763741
+## 3  -1.11651166 0.83893088
+## 4  -0.15522895 0.36563945
+## 5   0.09558052 0.35908874
+## 6  -0.96585144 0.70060711
+## 7   0.17152542 0.95352959
+## 8  -0.63151313 0.72658065
+## 9  -0.37198607 0.23277768
+## 10 -2.44746622 0.06599427
+## 
+## [[2]]
+## [1] 1 2 3 4 5
+## 
+## [[3]]
+##       [,1] [,2]
+##  [1,]    1   11
+##  [2,]    2   12
+##  [3,]    3   13
+##  [4,]    4   14
+##  [5,]    5   15
+##  [6,]    6   16
+##  [7,]    7   17
+##  [8,]    8   18
+##  [9,]    9   19
+## [10,]   10   20</code></pre>
+<pre class="r"><code>l[1]</code></pre>
+<pre><code>## [[1]]
+##           norm       unif
+## 1   0.51158460 0.58021460
+## 2   0.17773040 0.02763741
+## 3  -1.11651166 0.83893088
+## 4  -0.15522895 0.36563945
+## 5   0.09558052 0.35908874
+## 6  -0.96585144 0.70060711
+## 7   0.17152542 0.95352959
+## 8  -0.63151313 0.72658065
+## 9  -0.37198607 0.23277768
+## 10 -2.44746622 0.06599427</code></pre>
+<pre class="r"><code>#l[1][1,2]
+
+l[[1]][1,2]</code></pre>
+<pre><code>## [1] 0.5802146</code></pre>
+</div>
+</div>
+<div id="filtering" class="section level2">
+<h2>5. Filtering</h2>
+<div id="a.-vector-2" class="section level4">
+<h4>A. Vector</h4>
+<pre class="r"><code>v1</code></pre>
+<pre><code>##  [1] 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116
+## [18] 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133
+## [35] 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150</code></pre>
+<pre class="r"><code>v1[v1 &gt; 110]</code></pre>
+<pre><code>##  [1] 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
+## [18] 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+## [35] 145 146 147 148 149 150</code></pre>
+<pre class="r"><code>v1[v1 &gt; 110 &amp; v1 &lt; 130] # compound condition</code></pre>
+<pre><code>##  [1] 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
+## [18] 128 129</code></pre>
+<pre class="r"><code>v1[v1 &lt; 110 | v1 &gt; 130]</code></pre>
+<pre><code>##  [1] 100 101 102 103 104 105 106 107 108 109 131 132 133 134 135 136 137
+## [18] 138 139 140 141 142 143 144 145 146 147 148 149 150</code></pre>
+</div>
+<div id="b.-matrix-3" class="section level4">
+<h4>B. Matrix</h4>
+<pre class="r"><code>m1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20</code></pre>
+<pre class="r"><code>m1[m1 &gt; 5]</code></pre>
+<pre><code>##  [1]  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<pre class="r"><code>m1[m1[,1] &lt; 5, ]</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19</code></pre>
+</div>
+<div id="c.-dataframe-2" class="section level4">
+<h4>C. Dataframe</h4>
+<pre class="r"><code>df1[df1[,3]=='f',]</code></pre>
+<pre><code>##       norm      unif alpha
+## 6 1.547064 0.9190479     f</code></pre>
+<pre class="r"><code>df1[df1$alpha=='f',]</code></pre>
+<pre><code>##       norm      unif alpha
+## 6 1.547064 0.9190479     f</code></pre>
+</div>
+</div>
+<div id="type-casting-and-coercion" class="section level2">
+<h2>6. Type casting and coercion</h2>
+<div id="a.-vector-3" class="section level4">
+<h4>A. Vector</h4>
+<pre class="r"><code>v1 &lt;- c(1L, 3L, 5L)
+v1</code></pre>
+<pre><code>## [1] 1 3 5</code></pre>
+<pre class="r"><code>typeof(v1)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>v1 &lt;- c(v1, 6.5) ## coercion
+v1</code></pre>
+<pre><code>## [1] 1.0 3.0 5.0 6.5</code></pre>
+<pre class="r"><code>typeof(v1)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>v1 &lt;- as.integer(v1) ## typecasting
+v1</code></pre>
+<pre><code>## [1] 1 3 5 6</code></pre>
+<pre class="r"><code>typeof(v1)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="b.-matrix-4" class="section level4">
+<h4>B. Matrix</h4>
+<pre class="r"><code>m1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20</code></pre>
+<pre class="r"><code>class(m1)</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre class="r"><code>d &lt;- as.data.frame(m1[m1[,1] &lt; 5, ]) ## coercion
+d</code></pre>
+<pre><code>##   V1 V2 V3 V4
+## 1  1  6 11 16
+## 2  2  7 12 17
+## 3  3  8 13 18
+## 4  4  9 14 19</code></pre>
+<pre class="r"><code>class(d)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+<div id="c.-dataframes-1" class="section level4">
+<h4>C. Dataframes</h4>
+<pre class="r"><code>d</code></pre>
+<pre><code>##   V1 V2 V3 V4
+## 1  1  6 11 16
+## 2  2  7 12 17
+## 3  3  8 13 18
+## 4  4  9 14 19</code></pre>
+<pre class="r"><code>class(d)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>m &lt;- as.matrix(d)
+class(m)</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+</div>
 </div>
 
 
