@@ -1,142 +1,152 @@
 ---
-title: 'Week 5: Reading Data and Data Munging'
+title: "Week 5 - Data Munging in R - Part II"
 author: "Naveen Venkataraman"
-date: "May 9, 2015"
+date: "October 31, 2015"
 output: html_document
 ---
 
-# Reading Data
-
-## From Excel
-
-```{r}
-library(readxl)
-
-xl_data <- read_excel("./data/gpa.xlsx")
-head(xl_data)
-```
-
-
-
-Install the ```gdata```, ```XLConnect``` and ```xlsx``` packages
-
-```{r results='hide', message=FALSE}
-library(gdata)
-
-gdata_xls <- read.xls("./data/elsec12_sttables.xls", sheet=1, header = TRUE)
-
-head(gdata_xls)
-```
-
-```{r results='hide', message=FALSE}
-library(XLConnect)
-
-wb <- loadWorkbook("./data/elsec12_sttables.xls")
-
-xlconnect_data <- readWorksheet(wb, sheet = "1", header = TRUE)
-
-head(xlconnect_data)
-```
-
-```{r results='hide', message=FALSE}
-library(xlsx)
-
-xlsx_data <- read.xlsx2("./data/elsec12_sttables.xls", sheetName = "1")
-
-head(xlsx_data)
-```
-
-## haven Package
-
-Install the ```haven``` package from github: https://github.com/hadley/haven
-
-```{r results='hide', message=FALSE}
-library(haven)
-```
-
-## From SAS
-
-```{r results='hide', message=FALSE}
-sas_data <- read_sas("./data//money.sas7bdat")
-
-head(sas_data)
-```
-
-## From SPSS
-
-```{r results='hide', message=FALSE}
-spss_data <- read_sav("./data//airline_passengers.sav")
-
-head(spss_data)
-```
-
-## From STATA
-
-```{r results='hide', message=FALSE}
-stata_data <- read_dta("./data//stata_sampledata_crime.dta")
-
-head(stata_data)
-```
-
-## From JSON
-
-```{r results='hide', message=FALSE}
-library(jsonlite)
-
-url <- "http://fantasy.premierleague.com/web/api/elements/"
-json_data <- fromJSON(paste0(url,1))
-
-head(json_data)
-```
-
----
-
-# Data Munging
-
-## ```reshape2```
-
-Reference: http://seananderson.ca/2013/10/19/reshape.html
-
-#### Using ```melt``` to go from Wide to Long format
-
-```{r}
-names(airquality) <- tolower(names(airquality))
-head(airquality)
-
-library(reshape2)
-
-aql <- melt(airquality)
-
-head(aql)
-tail(aql)
-
-```
-
-#### Using ```id``` variables in ```melt```
-
-```{r}
-aql <- melt(airquality, id.vars = c("month", "day"))
-head(aql)
-
-head(aql)
-tail(aql)
-```
-
-#### Using ```cast``` to cast data from Long to Wide format
-
-```{r}
-aql <- melt(airquality, id.vars = c("month", "day"))
-aqw <- dcast(aql, month + day ~ variable)
-head(aqw)
-```
-
-```{r}
-dcast(aql, month ~ variable)
-
-dcast(aql, month ~ variable, fun.aggregate = mean, 
-  na.rm = TRUE)
-```
-
 ## dplyr
 
-Reference: http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html
+Functions
+
++ select(): select variables
++ filter(): filter by criteria
+    + also see slice()
++ group_by(): groups by categorical levels
++ arrange(): order data
++ mutate(): 
+    + also see transmute()
++ summarise(): summary output
++ sample_n() and sample_frac()
++ join(): joining two dataframes (similar to joins in SQL)
+
+```{r}
+library(readr)
+library(dplyr)
+
+soccerdata <- read_csv("./data/soccer.csv")
+dim(soccerdata)
+head(soccerdata)
+```
+
+#### select
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points)
+```
+
+#### filter
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    filter(now_cost > 5 & total_points > 30, team_name == "Arsenal")
+```
+
+#### group_by and summarise
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points))
+```
+
+#### arrange
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name, type_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    arrange(desc(team_name))
+```
+
+#### mutate and transmute
+
+```{r}
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    mutate(league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+
+soccerdata %>%
+    select(type_name, team_name, now_cost, total_points) %>%
+    group_by(team_name) %>%
+    summarise(teamcost = sum(now_cost), teampoints = sum(total_points)) %>%
+    transmute(team_name = team_name, 
+              league.average = sum(teamcost)/n(),
+           cost_diff = league.average - teamcost)
+    
+```
+
+#### sample_n() and sample_frac()
+
+```{r}
+data.df <- data.frame(y1=rnorm(100),x1=rnorm(100),x2=rnorm(100))
+head(data.df)
+
+dim(data.df)
+
+sample_n(data.df, 70)
+sample_frac(data.df, .6)
+```
+
+#### joins
+
+1. inner_join(x, y)
+
++ all rows from x where there are matching values in y
++ **ALL** columns from x **AND** y
++ if there are multiple matches between x and y
+    + all combination of the matches are returned
+
+```{r}
+library(readr)
+
+flavors <- read_csv("./data/icecream_flavors.csv")
+flavors
+
+brands <- read_csv("./data/icecream_brands.csv")
+brands
+
+inner_join(flavors, brands)
+```
+
+2. semi_join(x, y)
+
++ all rows from x where there are matching values in y
++ _only columns from x_
++ _won't return duplicate rows_
+
+```{r}
+semi_join(flavors, brands)
+```
+
+3. left_join(x, y)
+
++ all rows from x
++ **ALL** columns from x **AND** y
++ _all combination of matches_
+
+```{r}
+left_join(flavors, brands)
+```
+
+4. anti_join(x, y)
+
++ all rows from x where **NO** matching values in y
++ only columns from x
+
+```{r}
+anti_join(flavors, brands)
+```
+

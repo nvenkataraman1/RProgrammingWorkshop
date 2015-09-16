@@ -4,13 +4,13 @@
 
 ---
 
-#### Materials for the R Programming Workshop - Spring 2015
+#### Materials for the R Programming Workshop - Fall 2015
 
 ---
 
 ## Workshop Outline
 
-### Session 1 (4/11): Introduction
+### [Session 1 (10/3): Introduction to R and RStudio](./sessions/w1/)
 
 **Pre-requisites for this class**
 
@@ -19,105 +19,71 @@
 
 **Topics Covered**
 
-+ Installing R and RStudio
 + RStudio IDE features
 + Customizing the RStudio Environment
 + Creating and Managing a RStudio Project
++ Data Analysis Value Chain
 + Installing and Loading ```packages```
-+ Dynamic Reporting with RMarkdown
-+ Resources
-    + Class website 
-        + [/r/uchicagorprogramming](https://www.reddit.com/r/uchicagorprogramming)
-    + R resources
-        + [/r/rstats](https://www.reddit.com/r/rstats)
-        + [/r/RStudio](https://www.reddit.com/r/RStudio)
-        + R Bloggers - http://www.r-bloggers.com/
-    + Programming Questions?
-        + Stackoverflow - http://stackoverflow.com/search?q=rstats
-+ Having fun with R
-+ In-class Practice
 
 ---
 
-### Session 2 (4/18): Data Structures in R - Part I
-
-**Reading list:** Chapters 2 (Vectors) and 3 (Matrices and Arrays) from the book "The Art of R Programming" by Norman Matloff
-
-Note: Chapter numbers may be different depending on edition. Please go by the topic name.
+### [Session 2 (10/10): Graphics and Visualization in R](./sessions/w2/)
 
 **Topics Covered**
 
-+ Atomic Vectors
-    + Types and tests
-    + Coercion
-+ Matrices and Arrays
-+ In-class Practice
++ Base plotting
++ ggplot2
 
 ---
 
-### Session 3 (4/25): Data Structures in R - Part II
-
-**Reading list:** Chapters 4 (Lists), 5 (Data Frames) and 6 (Factors and Tables) from the book "The Art of R Programming" by Norman Matloff.
-
-Note: Chapter numbers may be different depending on edition. Please go by the topic name.
+### [Session 3 (10/17): Data Structures in R](./sessions/w3/)
 
 **Topics Covered**
 
-+ Data frames
-+ Factors
-+ Lists
-+ In-class Practice
++ Data Structures: Vectors, Lists, Matrices, Data frames
++ Creation
++ Inspection
++ Adding and Removing
++ Indexing
++ Type casting and coercion
 
 ---
 
-### Session 4 (5/2): Functions in R
-
-**Reading list:**
-
-1. Chapter 7 (R Programming Structures) from the book "The Art of R Programming" by Norman Matloff.
-2. ```apply``` family of functions - http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega/7141669#7141669. Focus on ```apply```, ```lapply```, ```sapply``` and ```tapply``` (you can ignore the rest for now, if it feels too complex)
+### [Session 4 (10/24): Data Munging in R - Part I](./sessions/w4/)
 
 **Topics Covered**
 
-+ Function components
-+ Control Flow
-+ Lexical scoping
-+ Arguments and Return values
-+ ```apply``` family of functions
-+ In-class Practice
++ readxl
++ haven
++ jsonlite
++ tidyr
 
 --- 
 
-### Session 5 (5/9): Data Munging in R
+### [Session 5 (10/31): Data Munging in R - Part II](./sessions/w5/)
 
 **Topics Covered**
 
-+ Reading data into R
-    + _haven_
-+ Reshaping data
-    + _reshape2_
-    + _tidyr_
-+ Analyzing data using _dplyr_
-+ In-class Practice
++ dplyr
 
 ---
 
-### Session 6 (5/16): Graphics in R - Part I
+### [Session 6 (11/7):  Functions and ```apply``` family](./sessions/w6/)
 
 **Topics Covered**
 
-+ Introduction to plotting
-+ Using __base__ graphics
-+ In-class Practice
++ Function syntax
++ Control structures
++ apply family of functions
 
 ---
 
-### Session 7 (5/23): Graphics in R - Part II
+### [Session 7 (11/14): Reporting and Business App Development](./sessions/w7/)
 
 **Topics Covered**
 
-+ Using _ggplot2_
-+ In-class Practice
++ Working with RMarkdown
++ Shiny
 
 ---
 
@@ -147,7 +113,7 @@ Reference books (optional)
 
 ##### Sharing and Reuse
 
-&copy; [Narayanan Venkataraman](http://nvenkataraman1.github.io)
+&copy; Narayanan Venkataraman
 
 1. Please feel free to use the materials here with attribution back to me by linking to my website: http://nvenkataraman1.github.io.
 2. This work is free for personal use only.
