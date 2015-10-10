@@ -339,9 +339,6 @@ ggplot(Salaries, aes(x=rank, fill=sex)) +
 + size
 + shape
 + binwidth
-+ notch
-    + TRUE / FALSE
-+ sides
 + width
 + position
     + dodge
