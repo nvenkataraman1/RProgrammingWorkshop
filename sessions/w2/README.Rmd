@@ -252,6 +252,27 @@ ggplot(data=mtcars, aes(x=wt, y=mpg)) +
 
 ---
 
+## Common options in geom functions
+
++ color
++ fill
++ alpha
+    + 0: transparent
+    + 1: opaque
++ linetype
+    + 1 to 6
++ size
++ shape
++ binwidth
++ width
++ position
+    + dodge
+    + stacked
+    + fill
+    + jitter
+
+---
+
 ## Colors
 
 ```{r}
@@ -270,7 +291,7 @@ ggplot(data=mtcars, aes(x=wt, y=mpg, color=factor(cyl))) +
 
 ---
 
-## Exercise 1
+## Exercise
 
 Use ```diamonds``` dataset and plot this image
 
@@ -323,28 +344,34 @@ ggplot(Salaries, aes(x=rank, fill=sex)) +
     geom_bar(position="fill") + 
     labs(title='position="fill"') + 
     coord_flip()
+
+ggplot(Salaries, aes(x=rank, fill=sex)) + 
+    geom_bar(position="dodge") + 
+    labs(title='position="dodge"') + 
+    scale_fill_grey(start = 0, end = 1)
 ```
 
 ---
 
-## Common options in geom functions
+## Scatter plots
 
-+ color
-+ fill
-+ alpha
-    + 0: transparent
-    + 1: opaque
-+ linetype
-    + 1 to 6
-+ size
-+ shape
-+ binwidth
-+ width
-+ position
-    + dodge
-    + stacked
-    + fill
-    + jitter
+```{r}
+ggplot(Salaries, aes(x=rank, y=salary, color=sex)) + 
+    geom_point()
+
+ggplot(Salaries, aes(x=rank, y=salary, color=sex)) + 
+    geom_point(position="jitter", size = 3)
+
+ggplot(Salaries, aes(x=rank, y=salary, color=sex)) + 
+    geom_jitter(size = 3)
+
+ggplot(Salaries, aes(x=rank, y=salary, color=sex)) + 
+    geom_jitter(aes(shape = sex), size = 3)
+
+ggplot(Salaries, aes(x=yrs.service, y=salary)) + 
+    geom_jitter(size = 3) + 
+    geom_smooth(method=lm)
+```
 
 ---
 
@@ -389,7 +416,7 @@ ggplot(Salaries, aes(x=salary, fill=rank)) +
     geom_density(alpha=0.3)
 
 ggplot(Salaries, aes(x=yrs.since.phd, y=salary, shape=sex, color=rank )) + 
-    geom_point(size=5)
+    geom_point(size=3)
 
 ```
 
