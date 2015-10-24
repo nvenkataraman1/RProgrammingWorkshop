@@ -1,0 +1,48 @@
+---
+title: "Week 4 - Quiz"
+author: "Naveen Venkataraman"
+date: "October 23, 2015"
+output: html_document
+---
+
+Quiz 1 - 10/24
+
+1. What are the various stages of the Data Analysis Value Chain?
+
+2. How do you install this package from Github? URL: https://github.com/cargomoose/raptR
+
+3. Base graphics: 
+
++ Write the code to partition a graphics device into 2 rows and 3 columns
++ What are the options available to:
+    ++ label plots
+    ++ adjust line type
+    ++ adjust line width
+    ++ provide main title, axes labels
+
+4. ggplot2
+
++ What is a geom object?
++ What does aes() do?
+
+5. What are the 3 metrics by which R's data structures are organized?
+
+6. What is an atomic vector? Is a list object an atomic vector? Justify.
+
+7. TRUE or FALSE
+
++ R is a statically typed language.
++ Index in R starts at 1.
++ Matrices are created with column-priority unless otherwise stated.
++ A list object has dimension
+
+8. Adding / dropping 
+
++ What is the command to add a column to a matrix?
++ How do you drop a data frame column?
+
+
+```{r}
+
+```
+
