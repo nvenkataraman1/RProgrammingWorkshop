@@ -12,13 +12,12 @@ Quiz 1 - 10/24
 2. How do you install this package from Github? URL: https://github.com/cargomoose/raptR
 
 3. Base graphics: 
-
-+ Write the code to partition a graphics device into 2 rows and 3 columns
-+ What are the options available to:
-    ++ label plots
-    ++ adjust line type
-    ++ adjust line width
-    ++ provide main title, axes labels
+    + Write the code to partition a graphics device into 2 rows and 3 columns
+    + What are the options available to:
+        ++ label plots
+        ++ adjust line type
+        ++ adjust line width
+        ++ provide main title, axes labels
 
 4. ggplot2
 
@@ -40,9 +39,4 @@ Quiz 1 - 10/24
 
 + What is the command to add a column to a matrix?
 + How do you drop a data frame column?
-
-
-```{r}
-
-```
 
