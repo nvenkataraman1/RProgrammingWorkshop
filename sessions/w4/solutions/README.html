@@ -74,8 +74,8 @@ img {
 </div>
 
 
-<div id="tidyr-exercise" class="section level2">
-<h2>Tidyr exercise</h2>
+<div id="exercise-2-solution" class="section level2">
+<h2>Exercise 2 solution</h2>
 <pre class="r"><code>library(jsonlite)</code></pre>
 <pre><code>## 
 ## Attaching package: 'jsonlite'
@@ -91,22 +91,22 @@ tfxrates &lt;- t(t(fxrates))
 fxrates.df &lt;- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
 fxrates.df</code></pre>
 <pre><code>##       xchg          rate
-## 1  USD_JPY    98.4677234
+## 1  USD_JPY    88.3985896
 ## 2  USD_USD     1.0000000
-## 3  JPY_EUR     0.0078826
-## 4  BTC_USD   136.6206533
-## 5  JPY_BTC     0.0000842
-## 6  USD_EUR     0.7475970
-## 7  EUR_USD     1.1120423
-## 8  EUR_JPY   113.9376754
-## 9  JPY_USD     0.0101331
+## 3  JPY_EUR     0.0086287
+## 4  BTC_USD   116.8609978
+## 5  JPY_BTC     0.0000922
+## 6  USD_EUR     0.6711491
+## 7  EUR_USD     1.3229212
+## 8  EUR_JPY   135.5439121
+## 9  JPY_USD     0.0110922
 ## 10 BTC_BTC     1.0000000
-## 11 EUR_BTC     0.0097361
-## 12 BTC_JPY 13985.3391082
+## 11 EUR_BTC     0.0115824
+## 12 BTC_JPY 11962.6179762
 ## 13 JPY_JPY     1.0000000
-## 14 BTC_EUR   100.7748627
+## 14 BTC_EUR    86.1996391
 ## 15 EUR_EUR     1.0000000
-## 16 USD_BTC     0.0079785</code></pre>
+## 16 USD_BTC     0.0071626</code></pre>
 <pre class="r"><code>fxrates.df &lt;- fxrates.df %&gt;% 
                     separate(xchg, c(&quot;From&quot;,&quot;To&quot;))
 
@@ -114,11 +114,11 @@ fxrates.wide &lt;- fxrates.df %&gt;%
                     spread(To, rate)
 
 fxrates.wide</code></pre>
-<pre><code>##   From       BTC         EUR           JPY         USD
-## 1  BTC 1.0000000 100.7748627 13985.3391082 136.6206533
-## 2  EUR 0.0097361   1.0000000   113.9376754   1.1120423
-## 3  JPY 0.0000842   0.0078826     1.0000000   0.0101331
-## 4  USD 0.0079785   0.7475970    98.4677234   1.0000000</code></pre>
+<pre><code>##   From       BTC        EUR           JPY         USD
+## 1  BTC 1.0000000 86.1996391 11962.6179762 116.8609978
+## 2  EUR 0.0115824  1.0000000   135.5439121   1.3229212
+## 3  JPY 0.0000922  0.0086287     1.0000000   0.0110922
+## 4  USD 0.0071626  0.6711491    88.3985896   1.0000000</code></pre>
 </div>
 
 

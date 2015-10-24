@@ -210,32 +210,24 @@ jj_long</code></pre>
 <pre class="r"><code>jj_wide &lt;- jj_long_united %&gt;%
                 spread(Qtr, Price)</code></pre>
 </div>
-<div id="exercise-use-tidyr-to-reshape-this-data" class="section level2">
-<h2>Exercise: Use <code>tidyr</code> to reshape this data</h2>
-<pre class="r"><code>library(jsonlite)
-url &lt;- &quot;http://fx.priceonomics.com/v1/rates/&quot;
-fxrates &lt;- fromJSON(url)
-
-tfxrates &lt;- t(t(fxrates))
-fxrates.df &lt;- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
-fxrates.df</code></pre>
-<pre><code>##       xchg          rate
-## 1  USD_JPY    98.5962429
-## 2  USD_USD     1.0000000
-## 3  JPY_EUR     0.0078731
-## 4  BTC_USD   136.6632182
-## 5  JPY_BTC     0.0000841
-## 6  USD_EUR     0.7485728
-## 7  EUR_USD     1.1115881
-## 8  EUR_JPY   113.8911327
-## 9  JPY_USD     0.0101208
-## 10 BTC_BTC     1.0000000
-## 11 EUR_BTC     0.0097322
-## 12 BTC_JPY 13989.6963142
-## 13 JPY_JPY     1.0000000
-## 14 BTC_EUR   100.8062596
-## 15 EUR_EUR     1.0000000
-## 16 USD_BTC     0.0079889</code></pre>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1:</h2>
+<ol style="list-style-type: decimal">
+<li><p>Download the data from URL: <a href="http://api.nobelprize.org/v1/laureate.json" class="uri">http://api.nobelprize.org/v1/laureate.json</a></p></li>
+<li>Describe:</li>
+</ol>
+<ul>
+<li>container type for the data</li>
+<li>dimensions of the data</li>
+<li>column-wise characteristics about the data</li>
+</ul>
+</div>
+<div id="exercise-2" class="section level2">
+<h2>Exercise 2:</h2>
+<ol style="list-style-type: decimal">
+<li><p>Download the data from URL: <a href="http://fx.priceonomics.com/v1/rates/" class="uri">http://fx.priceonomics.com/v1/rates/</a></p></li>
+<li><p>Use <code>tidyr</code> to reshape this data into matrix form</p></li>
+</ol>
 </div>
 </div>
 
