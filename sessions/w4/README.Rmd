@@ -114,14 +114,18 @@ jj_wide <- jj_long_united %>%
                 spread(Qtr, Price)
 ```
 
-## Exercise: Use ```tidyr``` to reshape this data
 
-```{r}
-library(jsonlite)
-url <- "http://fx.priceonomics.com/v1/rates/"
-fxrates <- fromJSON(url)
+## Exercise 1:
 
-tfxrates <- t(t(fxrates))
-fxrates.df <- data.frame(xchg=rownames(tfxrates),rate=matrix(tfxrates))
-fxrates.df
-```
+1. Download the data from URL: http://api.nobelprize.org/v1/laureate.json
+
+2. Describe:
++ container type for the data
++ dimensions of the data
++ column-wise characteristics about the data
+
+## Exercise 2:
+
+1. Download the data from URL: http://fx.priceonomics.com/v1/rates/
+
+2. Use ```tidyr``` to reshape this data into matrix form

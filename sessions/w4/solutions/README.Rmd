@@ -5,7 +5,7 @@ date: "October 24, 2015"
 output: html_document
 ---
 
-## Tidyr exercise
+## Exercise 2 solution
 
 ```{r}
 library(jsonlite)
