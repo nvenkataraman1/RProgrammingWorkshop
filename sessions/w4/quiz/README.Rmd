@@ -14,10 +14,10 @@ Quiz 1 - 10/24
 3. Base graphics: 
     + Write the code to partition a graphics device into 2 rows and 3 columns
     + What are the options available to:
-        ++ label plots
-        ++ adjust line type
-        ++ adjust line width
-        ++ provide main title, axes labels
+        + label plots
+        + adjust line type
+        + adjust line width
+        + provide main title, axes labels
 
 4. ggplot2
 
