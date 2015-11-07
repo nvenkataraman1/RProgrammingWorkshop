@@ -237,9 +237,9 @@ tapply(hitters.complete$Salary,
 ##### Using ```dplyr```
 
 ```{r}
-# library(dplyr)
-# hitters.complete %>%
-#     group_by(Division, League) %>%
-#     summarise(s = sum(Salary))
+library(dplyr)
+hitters.complete %>%
+    group_by(Division, League) %>%
+    summarise(s = sum(Salary))
 ```
 
