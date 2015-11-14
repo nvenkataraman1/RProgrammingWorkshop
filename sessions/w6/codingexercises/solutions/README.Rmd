@@ -1,0 +1,120 @@
+---
+title: "Solutions"
+author: "Naveen Venkataraman"
+date: "November 7, 2015"
+output: html_document
+---
+
+## Ans 1
+
+```{r}
+## circular area
+
+circlearea <- function(radius) {
+    print(pi * radius^2)
+}
+
+## or 
+
+circlearea <- function(radius=1) {
+    print(pi * radius^2)
+}
+```
+
+
+## Ans 2
+
+```{r}
+## a
+crosscurrency <- function(from, to) {
+    print(euro.cross[from,to])
+}
+
+crosscurrency("ATS","FRF")
+
+## b
+crosscurrency("FRF","ATS")
+
+## c
+crosscurrency(to="ATS",from="FRF")
+```
+
+## Ans 3
+
+```{r}
+cumulative <- function(v) {
+    sum <- 0
+    
+    for(i in 1:length(v)) {
+        sum <- sum + v[i]
+        print(sum)
+    }
+}
+
+## equivalent built-in R function
+cumsum(1:10)
+```
+
+## Ans 4
+
+```{r}
+printi <- function() {
+    i <- 1
+    
+    while(i <= 10) {
+        print(i)
+        
+        i <- i+1
+    }
+}
+```
+
+## Ans 5
+
+```{r}
+typecheck <- function(var) {
+    
+    ifelse(var < 0.5, 0, 1)
+    
+}
+```
+
+## Ans 6
+
+```{r}
+mat1 <- matrix(rnorm(30), nrow = 6)
+## a
+apply(mat1,1,mean) ## or
+rowMeans(mat1)
+
+## b
+apply(mat1,2,mean) ## or
+colMeans(mat1)
+
+## c
+rowSums(mat1)
+colSums(mat1)
+```
+
+## Ans 7
+
+```{r}
+## a
+lapply(mtcars,var)
+
+## b
+sapply(mtcars,var)
+```
+
+## Ans 8
+
+```{r}
+baseball.data <- data.frame(
+    team = gl(5, 5,
+              labels = paste("Team", LETTERS[1:5])),
+    player = sample(letters, 25),
+    batting.average = runif(25, .200, .400))
+
+tapply(baseball.data$batting.average,baseball.data$team,max)
+```
+
