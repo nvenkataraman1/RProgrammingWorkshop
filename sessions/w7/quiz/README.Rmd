@@ -1,0 +1,30 @@
+---
+title: "Quiz 2 - 11/14"
+author: "Naveen Venkataraman"
+date: "November 13, 2015"
+output: html_document
+---
+
+## dplyr
+
+1. Name any 5 verbs in dplyr along with a brief explanation of their functionality.
+
+2. What are the 4 different types of joins in dplyr? What are the differences between these joins?
+
+3. Assume you have a 1000 x 3 dataset named ```data```. How do you partition this into train/test using dplyr?
+
+## Functions
+
+4. What is the syntax to declare a function in R?
+
+5. ```doSomething()``` vs ```doSomething(x=10)```
+
+What is the difference between these two function definitions?
+
+6. What are the 3 control structures offered in R? Write out a sample syntax for each of them.
+
+## apply family
+
+7. What are the arguments to a tapply function?
+
+8. What is the difference between lapply and sapply?
