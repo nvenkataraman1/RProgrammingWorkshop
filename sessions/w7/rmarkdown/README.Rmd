@@ -1,0 +1,38 @@
+---
+title: "RMarkdown example"
+author: "Naveen Venkataraman"
+date: "November 14, 2015"
+output:
+  html_document:
+    fig_caption: yes
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+# Markdown basics
+
+## Formatting
+
+a. Use _italics_ or *italics*
+    + this is a sub-bullet
+        + sub sub bullet
+    + second sub bullet
+b. Use __bold__ or **bold**
+    + sub bullet
+
+---
+
+## Section 2
+
+```{r}
+# comment
+
+plot(mtcars$mpg,mtcars$cyl)
+```
+
+[this is a link to google](www.google.com)
+
+
+
+
