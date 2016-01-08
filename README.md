@@ -4,7 +4,12 @@
 
 ---
 
-#### Materials for the R Programming Workshop - Fall 2015
+#### Materials for the R Programming Workshop - Winter 2016
+
+---
+## Class Logistics
+
+Saturdays, 2.30 - 4.30pm
 
 ---
 
