@@ -10,7 +10,7 @@
 
 ## Workshop Outline
 
-### [Session 1 (10/3): Introduction to R and RStudio](./sessions/w1/)
+### [Session 1: Introduction to R and RStudio](./sessions/w1/)
 
 **Pre-requisites for this class**
 
@@ -27,7 +27,7 @@
 
 ---
 
-### [Session 2 (10/10): Graphics and Visualization in R](./sessions/w2/)
+### [Session 2: Graphics and Visualization in R](./sessions/w2/)
 
 **Topics Covered**
 
@@ -36,7 +36,7 @@
 
 ---
 
-### [Session 3 (10/17): Data Structures in R](./sessions/w3/)
+### [Session 3: Data Structures in R](./sessions/w3/)
 
 **Topics Covered**
 
@@ -49,7 +49,7 @@
 
 ---
 
-### [Session 4 (10/24): Data Munging in R - Part I](./sessions/w4/)
+### [Session 4: Data Munging in R - Part I](./sessions/w4/)
 
 **Topics Covered**
 
@@ -60,7 +60,7 @@
 
 --- 
 
-### [Session 5 (10/31): Data Munging in R - Part II](./sessions/w5/)
+### [Session 5: Data Munging in R - Part II](./sessions/w5/)
 
 **Topics Covered**
 
@@ -68,7 +68,7 @@
 
 ---
 
-### [Session 6 (11/7):  Functions and ```apply``` family](./sessions/w6/)
+### [Session 6:  Functions and ```apply``` family](./sessions/w6/)
 
 **Topics Covered**
 
@@ -78,18 +78,12 @@
 
 ---
 
-### [Session 7 (11/14): Reporting and Business App Development](./sessions/w7/)
+### [Session 7: Reporting and Business App Development](./sessions/w7/)
 
 **Topics Covered**
 
 + Working with RMarkdown
 + Shiny
-
----
-
-### Discussion board
-
-Public forum on [/r/UChicagoRProgramming](https://www.reddit.com/r/uchicagorprogramming)
 
 ---
 
